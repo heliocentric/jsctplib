@@ -4,6 +4,8 @@
  */
 package com.github.heliocentric.jsctplib;
 
+import java.net.DatagramSocket;
+
 
 /**
  *
@@ -12,9 +14,10 @@ package com.github.heliocentric.jsctplib;
 public class SCTP {
 	public SCTP() {
 	}
-	public Thread IOThread;
+	private Thread MainAgent;
+	private DatagramSocket Socket;
 	public SCTPSocket socket(int domain, int type, int protocol) {
-		return new SCTPSocket();
+		return new SCTPSocket(this);
 	}
 	public void close(SCTPSocket socket) {
 		

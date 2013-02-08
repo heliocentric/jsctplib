@@ -9,6 +9,11 @@ package com.github.heliocentric.jsctplib;
  * @author helio
  */
 public class SCTPSocket {
+
+	private SCTP master;
+	SCTPSocket(SCTP aThis) {
+		this.master = aThis;
+	}
 	public void bind() {
 		
 	}
