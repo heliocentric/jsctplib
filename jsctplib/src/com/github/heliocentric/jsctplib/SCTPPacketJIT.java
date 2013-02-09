@@ -7,12 +7,32 @@ package com.github.heliocentric.jsctplib;
 
 /**
  *
+ * 
+ * Just In Time implementation of SCTPPacket.
+ * There are private variables for all functions.
+ * If someone calls Unpack(), the readonly boolean is set, and we use index's
+ * into the byte[] for the variables.
+ * 
+ * DO NOT MODIFY THE byte[] AFTER CALLING Unpack(). For speed, this
+ * implementation is zero-copy. It is also recommended to null the
+ * variable, to eliminate undefined behavior.
+ * 
+ * 
  * @author helio
  */
-public class SCTPPacketOut implements SCTPPacket {
-
+public class SCTPPacketJIT implements SCTPPacket {
+	public SCTPPacketJIT() {
+		this._readonly = false;
+	}
+	
+	private boolean _readonly;
+	@Override
+	public boolean ReadOnly() {
+		return this._readonly;
+	}
 	@Override
 	public void Unpack(byte[] packet) {
+		this._readonly = true;
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
@@ -88,6 +108,21 @@ public class SCTPPacketOut implements SCTPPacket {
 
 	@Override
 	public boolean checkChecksum() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public int getChunkNumber() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public SCTPChunk getChunk(int number) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void addChunk(SCTPChunk chunk) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 	
