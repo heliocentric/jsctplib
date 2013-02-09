@@ -14,10 +14,18 @@ import java.net.DatagramSocket;
 public class SCTP {
 	public SCTP() {
 	}
-	private Thread MainAgent;
+	private Thread IOAgent;
+	private Thread MultiPlexAgentIn;
+	private Thread MultiPlexAgentOut;
 	private DatagramSocket Socket;
 	public SCTPSocket socket(int domain, int type, int protocol) {
 		return new SCTPSocket(this);
+	}
+	public void Start() {
+		
+	}
+	public void Stop() {
+		
 	}
 	public void close(SCTPSocket socket) {
 		
