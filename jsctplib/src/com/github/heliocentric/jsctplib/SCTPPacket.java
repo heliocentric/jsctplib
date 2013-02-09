@@ -11,5 +11,13 @@ package com.github.heliocentric.jsctplib;
 public interface SCTPPacket {
 	public void Unpack(byte [] packet);
 	public byte[] Pack();
-	
+	public int getSourcePort();
+	public void setSourcePort(int Port);
+	public int getDestinationPort();
+	public void setDestinationPort(int Port);
+	public long getVerificationTag();
+	public void setVerificationTag(long Tag);
+	public long getChecksum();
+	public void calcChecksum();
+	public boolean checkChecksum();
 }
