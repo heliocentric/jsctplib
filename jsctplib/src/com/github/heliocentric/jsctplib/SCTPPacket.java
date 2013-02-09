@@ -18,6 +18,5 @@ public interface SCTPPacket {
 	public long getVerificationTag();
 	public void setVerificationTag(long Tag);
 	public long getChecksum();
-	public void calcChecksum();
 	public boolean checkChecksum();
 }

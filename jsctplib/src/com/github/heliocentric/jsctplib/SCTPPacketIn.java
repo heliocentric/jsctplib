@@ -55,10 +55,6 @@ public class SCTPPacketIn implements SCTPPacket {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	@Override
-	public void calcChecksum() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
 
 	@Override
 	public boolean checkChecksum() {

@@ -21,43 +21,68 @@ public class SCTPPacketOut implements SCTPPacket {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
+	/*
+	 * 
+	 * SCTP Source Port
+	 * This is in host byte order, until we attempt to generate a
+	 * byte array.
+	 * 
+	 */
+	
+	private int SourcePort;
+	
 	@Override
 	public int getSourcePort() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return this.SourcePort;
 	}
 
 	@Override
 	public void setSourcePort(int Port) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		this.SourcePort = Port;
 	}
 
+	
+	/* 
+	 * 
+	 * SCTP Destination port
+	 * This is in host byte order, until we attempt to generate a
+	 * byte array.
+	 * 
+	 */
+	
+	
+	private int DestinationPort;
+	
 	@Override
 	public int getDestinationPort() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return this.DestinationPort;
 	}
 
 	@Override
 	public void setDestinationPort(int Port) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		this.DestinationPort = Port;
 	}
 
+	/*
+	 * 
+	 * SCTP Verification tag.
+	 * We DO NOT attempt to convert this, as all it is is a tag.
+	 * 
+	 */
+	
+	private long VerificationTag;
 	@Override
 	public long getVerificationTag() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return this.VerificationTag;
 	}
 
 	@Override
 	public void setVerificationTag(long Tag) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		this.VerificationTag = Tag;
 	}
 
 	@Override
 	public long getChecksum() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public void calcChecksum() {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
