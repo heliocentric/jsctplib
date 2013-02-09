@@ -30,12 +30,24 @@ public class SCTPPacketJIT implements SCTPPacket {
 	public boolean ReadOnly() {
 		return this._readonly;
 	}
+	
+	
+	/*
+	 * 
+	 * Raw SCTP packet.
+	 * Everything used here has to be converted/swapped/shifted at run time.
+	 * Only used if this.ReadOnly() == true;
+	 * 
+	 */
+	
+	private byte[] packet;
 	@Override
 	public void Unpack(byte[] packet) {
 		this._readonly = true;
-		throw new UnsupportedOperationException("Not supported yet.");
+		this.packet = packet;
 	}
 
+	
 	@Override
 	public byte[] Pack() {
 		throw new UnsupportedOperationException("Not supported yet.");
