@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,10 +55,22 @@ public class SCTP {
 		*/
 		
 		SCTPPacket packet = new SCTPPacketJIT();
+		
+		
+		
 		packet.setSourcePort(65523);
 		packet.setDestinationPort(80);
 		packet.setVerificationTag(1231356912);
-		System.out.println(SCTP.bytesToHex(packet.Pack()));
+		
+		
+		
+		String bytestring = SCTP.bytesToHex(packet.Pack());
+		String[] chunks = bytestring.split("(?<=\\G.{8})");
+		Integer offset = 0;
+		for (String chunk : chunks) {
+			System.out.println("0x" + String.format("%04d", offset) + " - " + chunk);
+			offset += 4;
+		}
 	}
 	
 	private class IOInputAgent implements Runnable {

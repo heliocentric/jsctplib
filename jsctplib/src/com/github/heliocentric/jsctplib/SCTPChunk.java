@@ -9,5 +9,6 @@ package com.github.heliocentric.jsctplib;
  * @author helio
  */
 public interface SCTPChunk {
-	
+	public byte[] Pack();
+	public void Unpack(byte[] data);
 }

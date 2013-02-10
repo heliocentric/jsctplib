@@ -9,5 +9,15 @@ package com.github.heliocentric.jsctplib;
  * @author helio
  */
 public class SCTPDataChunk implements SCTPChunk {
+
+	@Override
+	public byte[] Pack() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void Unpack(byte[] data) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 	
 }
