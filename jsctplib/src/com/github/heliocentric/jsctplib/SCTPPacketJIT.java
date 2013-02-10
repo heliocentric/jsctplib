@@ -50,7 +50,20 @@ public class SCTPPacketJIT implements SCTPPacket {
 	
 	@Override
 	public byte[] Pack() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		byte[] common_header = new byte[12];
+		common_header[0] = (byte) (this.SourcePort >> 8);
+		common_header[1] = (byte) (this.SourcePort);
+		common_header[2] = (byte) (this.DestinationPort >> 8);
+		common_header[3] = (byte) (this.DestinationPort);
+		common_header[4] = (byte) (this.VerificationTag >> 24);
+		common_header[5] = (byte) (this.VerificationTag >> 16);
+		common_header[6] = (byte) (this.VerificationTag >> 8);
+		common_header[7] = (byte) (this.VerificationTag);
+		common_header[8] = (byte) (this.getChecksum() >> 24);
+		common_header[9] = (byte) (this.getChecksum() >> 16);
+		common_header[10] = (byte) (this.getChecksum() >> 8);
+		common_header[11] = (byte) (this.getChecksum());
+		return common_header;
 	}
 
 	/*
@@ -112,10 +125,10 @@ public class SCTPPacketJIT implements SCTPPacket {
 	public void setVerificationTag(long Tag) {
 		this.VerificationTag = Tag;
 	}
-
+	
 	@Override
 	public long getChecksum() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return 919239132;
 	}
 
 	@Override

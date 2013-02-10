@@ -48,9 +48,16 @@ public class SCTP {
 		} catch (SocketException ex) {
 			Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
+		/*
 		this.IOInputAgentThread = new Thread(new IOInputAgent(this));
 		this.IOInputAgentThread.start();
+		*/
+		
+		SCTPPacket packet = new SCTPPacketJIT();
+		packet.setSourcePort(65523);
+		packet.setDestinationPort(80);
+		packet.setVerificationTag(1231356912);
+		System.out.println(SCTP.bytesToHex(packet.Pack()));
 	}
 	
 	private class IOInputAgent implements Runnable {
@@ -91,5 +98,16 @@ public class SCTP {
 	
 	public void Stop() {
 		
+	}
+	public static String bytesToHex(byte[] bytes) {
+		final char[] hexArray = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+		char[] hexChars = new char[bytes.length * 2];
+		int v;
+		for ( int j = 0; j < bytes.length; j++ ) {
+		    v = bytes[j] & 0xFF;
+		    hexChars[j * 2] = hexArray[v >>> 4];
+		    hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+		}
+		return new String(hexChars);
 	}
 }
