@@ -55,22 +55,18 @@ public class SCTP {
 		*/
 		
 		SCTPPacket packet = new SCTPPacketJIT();
-		
-		
-		
 		packet.setSourcePort(65523);
 		packet.setDestinationPort(80);
 		packet.setVerificationTag(1231356912);
 		
+		SCTP.DisplayPacket(packet.Pack());
 		
+		SCTPParameter param = new SCTPParameter();
+		param.setType(6);
+		param.setData("Test Value123".getBytes());
 		
-		String bytestring = SCTP.bytesToHex(packet.Pack());
-		String[] chunks = bytestring.split("(?<=\\G.{8})");
-		Integer offset = 0;
-		for (String chunk : chunks) {
-			System.out.println("0x" + String.format("%04d", offset) + " - " + chunk);
-			offset += 4;
-		}
+		SCTP.DisplayPacket(param.Pack());
+
 	}
 	
 	private class IOInputAgent implements Runnable {
@@ -119,8 +115,29 @@ public class SCTP {
 		for ( int j = 0; j < bytes.length; j++ ) {
 		    v = bytes[j] & 0xFF;
 		    hexChars[j * 2] = hexArray[v >>> 4];
-		    hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+		 hexChars[j * 2 + 1] = hexArray[v & 0x0F];
 		}
 		return new String(hexChars);
+	}
+
+	public static void DisplayPacket(byte[] bytes) {
+		String bytestring = SCTP.bytesToHex(bytes);
+		String[] chunks = bytestring.split("(?<=\\G.{8})");
+		Integer offset = 0;
+		for (String chunk : chunks) {
+			System.out.println("0x" + String.format("%04d", offset) + " - " + chunk + "\t" + new String(SCTP.hexStringToByteArray(chunk)));
+			offset += 4;
+		}
+
+	}
+
+	public static byte[] hexStringToByteArray(String s) {
+		int len = s.length();
+		byte[] data = new byte[len / 2];
+		for (int i = 0; i < len; i += 2) {
+			data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+					+ Character.digit(s.charAt(i + 1), 16));
+		}
+		return data;
 	}
 }
