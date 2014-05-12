@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>networking - Why is SCTP not much used/known - Stack Overflow</title>
+    <link rel="shortcut icon" href="https://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=038622610830">
+    <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=fd7230a85918">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="https://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta name="og:type" content="website">
+    <meta name="og:image" content="https://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6">
+    <meta name="og:title" content="Why is SCTP not much used/known">
+    <meta name="og:description" content="I recently checked out the book &quot;UNIX Network Programming, Vol. 1&quot; by Richards Stevens and I found that there is a third transport layer standard besides TCP and UDP: SCTP. 
+
+Summary: SCTP is a ">
+    <meta name="og:url" content="http://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known">
+    <link rel="canonical" href="http://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known">
+
+    
+    
+    <script async="" src="./networking - Why is SCTP not much used known - Stack Overflow_files/quant.js"></script><script async="" src="./networking - Why is SCTP not much used known - Stack Overflow_files/beacon.js"></script><script async="" src="./networking - Why is SCTP not much used known - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="https://engine.adzerk.net/ados.js"></script><script src="./networking - Why is SCTP not much used known - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./networking - Why is SCTP not much used known - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./networking - Why is SCTP not much used known - Stack Overflow_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Why is SCTP not much used/known&#39;" href="https://stackoverflow.com/feeds/question/1171555">
+    <script>
+        
+        StackExchange.ready(function () {
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:5,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:1171555});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '1171555');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1399911306,"networkMetaHostname":"meta.stackexchange.com","styleCode":true,"enableUserHovercards":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"1acc1f4abba01c958a12fdf0c0622635","isAnonymous":true,"ab":{"question_ask_anonymous_banner":{"v":"friendly_message","g":1},"welcome_email":{"v":"3","g":1}}}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"5c4b1b884637","js/moderator.en.js":"852a9590ae2d","js/full-anon.en.js":"c604fd51dbb9","js/full.en.js":"2ad6adf96c28","js/wmd.en.js":"2f5dc3943643","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"101753db4f22","js/help.en.js":"4a00463b8aeb","js/tageditor.en.js":"82fb8c872f3f","js/tageditornew.en.js":"76c58ad8a7d6","js/inline-tag-editing.en.js":"1a5cabd8e30a","js/revisions.en.js":"9a2b9be85a69","js/review.en.js":"7ee01ebdd747","js/tagsuggestions.en.js":"c8ad9d23ee84","js/post-validation.en.js":"52b68af05e61","js/explore-qlist.en.js":"8b8b631bd679","js/events.en.js":"923742581a4c"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+        
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+<style type="text/css"></style><script async="" src="./networking - Why is SCTP not much used known - Stack Overflow_files/full-anon.en.js"></script><script async="" src="./networking - Why is SCTP not much used known - Stack Overflow_files/post-validation.en.js"></script></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+<div class="topbar">
+    <div class="topbar-wrapper">
+        
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="https://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com/" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackoverflow.com/" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+            </div>
+
+
+
+
+    <a href="https://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link" href="https://careers.stackoverflow.com/" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Careers 2.0
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+                        <a href="https://stackoverflow.com/users/signup?returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f1171555%2fwhy-is-sctp-not-much-used-known" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a>
+                    or
+                    <a href="https://stackoverflow.com/users/login?returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f1171555%2fwhy-is-sctp-not-much-used-known" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a>
+
+                    to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="https://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+            
+            <a href="https://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 123 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+            
+        </div>
+
+        <div class="topbar-links">
+            
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+                            <a href="https://stackoverflow.com/users/signup?returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f1171555%2fwhy-is-sctp-not-much-used-known" class="login-link">sign up</a>
+                            <a href="https://stackoverflow.com/users/login?returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f1171555%2fwhy-is-sctp-not-much-used-known" class="login-link">log in</a>
+                            <a href="https://stackoverflow.com/tour">tour</a>
+
+                            <a href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                <li>
+                    <a href="https://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                        Tour
+                        <span class="item-summary">
+                            Start here for a quick overview of the site
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="https://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="https://careers.stackoverflow.com/">careers 2.0</a>
+                    </span>
+                </div>
+
+			<div class="search-container">
+                <form id="search" action="https://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+			</div>
+            	
+        </div>      
+    </div> 
+</div>
+<script>
+    StackExchange.ready(function () { StackExchange.topbar.init(); });
+</script>
+    <div class="container">
+        <div id="header" class="headeranon">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="https://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs mainnavsanon">
+                    <ul>
+                            <li class="youarehere"><a id="nav-questions" href="https://stackoverflow.com/questions">Questions</a></li>
+                            <li><a id="nav-tags" href="https://stackoverflow.com/tags">Tags</a></li>
+                            <li><a id="nav-tour" href="https://stackoverflow.com/about">Tour</a></li>
+                            <li><a id="nav-users" href="https://stackoverflow.com/users">Users</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="https://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Article">
+	<link itemprop="image" href="https://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+            <a href="https://stackoverflow.com/about" id="tell-me-more" class="button">Take the 2-minute tour</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a question and answer site for professional and enthusiast programmers. It's 100% free, no registration required.
+        </div>        
+    </div>
+    <script>
+        $('#tell-me-more').click(function () {
+            var clickSource = $("body").attr("class") + '-mini';
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+            }
+
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("aboutpage.click", { aboutclick_location: clickSource } , true);
+            });
+        });
+        $('#herobox-mini #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "close" }, true);
+            });
+            $.cookie("hero", "none", { path: "/" });
+            var $hero = $("#herobox-mini");
+            $hero.slideUp('fast', function () { $hero.remove(); });
+            return false;
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./networking - Why is SCTP not much used known - Stack Overflow_files/networking - Why is SCTP not much used known - Stack Overflow.html" class="question-hyperlink">Why is SCTP not much used/known</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="1171555" id="question">
+    
+    <script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk572187062",4).setZone(43) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk572187062">
+            </div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1171555">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span class="vote-count-post ">98</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>17</b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="description">
+
+        <p>I recently checked out the book <a href="http://www.kohala.com/start/unpv12e.html">"UNIX Network Programming, Vol. 1"</a> by Richards Stevens and I found that there is a third transport layer standard besides TCP and UDP: <em>SCTP</em>. </p>
+
+<p>Summary: SCTP is a transport-level protocal that is message-driven like UDP, but reliable like TCP. Here is a <a href="http://www.ibm.com/developerworks/linux/library/l-sctp/?ca=dgr-lnxw07SCTP">short introduction from IBM DeveloperWorks</a>.</p>
+
+<p>Honestly, I have never heard of SCTP before. I can't remember reading about it in any networking books or hearing about it in classes I had taken. Reading <a href="http://stackoverflow.com/search?q=SCTP">other stackoverflow questions</a> that mentions SCTP suggests that I'm not alone with this lack of knowledge.</p>
+
+<p><strong>Why is SCTP so unknown? Why is it not much used?</strong> </p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="https://stackoverflow.com/questions/tagged/networking" class="post-tag js-gps-track" title="show questions tagged &#39;networking&#39;" rel="tag">networking</a> <a href="https://stackoverflow.com/questions/tagged/tcp" class="post-tag js-gps-track" title="show questions tagged &#39;tcp&#39;" rel="tag">tcp</a> <a href="https://stackoverflow.com/questions/tagged/popularity" class="post-tag js-gps-track" title="show questions tagged &#39;popularity&#39;" rel="tag">popularity</a> <a href="https://stackoverflow.com/questions/tagged/sctp" class="post-tag js-gps-track" title="show questions tagged &#39;sctp&#39;" rel="tag">sctp</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/q/1171555" title="short permalink to this question" class="short-link" id="link-post-1171555">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/1171555/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/1171555/revisions" title="show all edits to this post">edited <span title="2013-03-02 03:33:46Z" class="relativetime">Mar 2 '13 at 3:33</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/172414/jack"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/fda0580090abd9137c84ee5021dcd73a" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/172414/jack">Jack</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">678</span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="18 bronze badges"><span class="badge3"></span><span class="badgecount">18</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2009-07-23 13:02:51Z" class="relativetime">Jul 23 '09 at 13:02</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/4194/dmeister"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/b3ff30dabe2347263297c1a405d0c766" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/4194/dmeister">dmeister</a><br>
+        <span class="reputation-score" title="reputation score 10983" dir="ltr">11k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="41 silver badges"><span class="badge2"></span><span class="badgecount">41</span></span><span title="72 bronze badges"><span class="badge3"></span><span class="badgecount">72</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1171555" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-991454" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 never heard of it - thanks.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/39315/robert-venables" title="4559 reputation" class="comment-user">Robert Venables</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment991454_1171555"><span title="2009-07-23 13:04:40Z" class="relativetime-clean">Jul 23 '09 at 13:04</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-21350947" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Anyone care to compare SCTP to ZeroMQ (besides that one is a protocol, the other a library - look at them as a tool for solving problems).</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/135665/emil-ivanov" title="17250 reputation" class="comment-user">Emil Ivanov</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment21350947_1171555"><span title="2013-03-01 16:08:16Z" class="relativetime-clean">Mar 1 '13 at 16:08</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-21360891" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I am just curious: What is wrong/different on 3/1/2013? Why so many votes on this one day?</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/4194/dmeister" title="10983 reputation" class="comment-user owner">dmeister</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment21360891_1171555"><span title="2013-03-01 21:27:58Z" class="relativetime-clean">Mar 1 '13 at 21:27</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-21361138" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@dmeister: Because <a href="http://www.reddit.com/r/programming/comments/19gqj0/why_is_sctp_nearly_unused/" rel="nofollow">I put you on Reddit</a>. Greetings from Darmstadt.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/309483/janus-troelsen" title="4628 reputation" class="comment-user">Janus Troelsen</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment21361138_1171555"><span title="2013-03-01 21:37:00Z" class="relativetime-clean">Mar 1 '13 at 21:37</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-21371787" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">12</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Please don't write 3/1/2013. Any of "March 1st 2013", "1-Mar-2013", "Mar 1st '13".. is preferable. Just don't write month and day-of-month in a way that can be misinterpreted.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/400127/zecc" title="2285 reputation" class="comment-user">Zecc</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment21371787_1171555"><span title="2013-03-02 10:43:23Z" class="relativetime-clean">Mar 2 '13 at 10:43</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-1171555" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add comment</a>
+    </td>
+</tr>            </tbody></table>    
+</div>
+
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								9 Answers
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="1172148"></a>
+<div id="answer-1172148" class="answer accepted-answer" data-answerid="1172148">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1172148">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">57</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>Indeed, SCTP is used mostly in the telecom area. Traditionally, telecom switches use SS7 (<a href="http://en.wikipedia.org/wiki/Signaling_System_7">Signaling System No. 7</a>) to interconnect different entities in the telecom network. For example - the telecom provider's subscriber data base(HLR), with a switch (MSC), the subscriber is connected too (MSC).</p>
+
+<p>The telecom area is moving to higher speeds and more reachable environment. One of these changes is to replace SS7 protocol by some more elegant, fast and flexible IP-based protocol.</p>
+
+<p>The telecom area is very conservative. The SS7 network has been used here for decades. It is very a reliable and closed network. This means a regular user has no access to it.</p>
+
+<p>The IP network, in contrast, is open and not reliable, and telecoms will not convert to it if it won't handle at least the load that SS7 handles. This is why SCTP was developed. It tries:</p>
+
+<ul>
+<li>to mimic all advantages of the SS7 network accumulated over the decades.</li>
+<li>to create a connection-oriented protocol better than TCP in speed, security, and redundancy</li>
+</ul>
+
+<p>The latest releases of Linux already have SCTP support.</p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/1172148" title="short permalink to this answer" class="short-link" id="link-post-1172148">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/1172148/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/1172148/revisions" title="show all edits to this post">edited <span title="2013-03-04 10:03:33Z" class="relativetime">Mar 4 '13 at 10:03</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/561958/scottwest"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/57a9273a81ea847ffd35a1d725d8058e" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/561958/scottwest">ScottWest</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,630</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="14 bronze badges"><span class="badge3"></span><span class="badgecount">14</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-07-23 14:27:21Z" class="relativetime">Jul 23 '09 at 14:27</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/135960/dimba"><div class="gravatar-wrapper-32"><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/06ff608739d131e40499289aa0e8d51e" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/135960/dimba">dimba</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">5,081</span><span title="10 gold badges"><span class="badge1"></span><span class="badgecount">10</span></span><span title="61 silver badges"><span class="badge2"></span><span class="badgecount">61</span></span><span title="117 bronze badges"><span class="badge3"></span><span class="badgecount">117</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1172148" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-1002968" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">specifically you should look at the output from the IETF's "SIGTRAN" working group which wrote up the mapping between SS7 and SCTP.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/6782/alnitak" title="136736 reputation" class="comment-user">Alnitak</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment1002968_1172148"><span title="2009-07-25 09:17:05Z" class="relativetime-clean">Jul 25 '09 at 9:17</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-5243504" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">11</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Probably the main reason SCTP isn't used much on the public Internet is that residential IPv4/NAT gateways need to become SCTP-aware to support multiplexing associations between multiple simultaneous private endpoints and exterior hosts.  Look for SCTP to become more useful once the IPv6 transition starts to pick up more steam.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/112191/james-woodyatt" title="1474 reputation" class="comment-user">james woodyatt</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment5243504_1172148"><span title="2011-01-20 02:43:14Z" class="relativetime-clean">Jan 20 '11 at 2:43</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-1172148" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk1745550867",4).setZone(44) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1745550867">
+            </div>
+  
+<a name="7359410"></a>
+<div id="answer-7359410" class="answer" data-answerid="7359410">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="7359410">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">39</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>We have been deploying SCTP in several applications now, and encountered significant problem with SCTP support in various home routers. They simply don't handle SCTP correctly. I believe this is primarily a performance issue (the SCTP protocol specification require checksums for the whole packets to be recalculated and not just for headers).</p>
+
+<p>Like many other promising protocols SCTP is sadly dead in the water until D-link and Netgear fixes their broken NAT boxes. </p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/7359410" title="short permalink to this answer" class="short-link" id="link-post-7359410">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/7359410/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-09-09 09:09:11Z" class="relativetime">Sep 9 '11 at 9:09</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/242687/pehrs"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/b02a00f17961ff5fb93425dbb0a7af34" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/242687/pehrs">pehrs</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">635</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7359410" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-9141341" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Wow, I wasn't aware of this barrier to entry. You are completely right -- see <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05" rel="nofollow">tools.ietf.org/html/draft-ietf-behave-sctpnat-05</a>  for a proposed way around this. This is the 3rd set of Internet Drafts on the same topic...</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/15290/bwooce" title="1145 reputation" class="comment-user">Bwooce</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment9141341_7359410"><span title="2011-09-25 05:54:20Z" class="relativetime-clean">Sep 25 '11 at 5:54</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-35476371" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You sound pretty pessimistic - for home routers at least. Assuming routers used in professional production environments do support it, SCTP still looks very useful. There are lots of use cases where network topologies don't leave the premises of the data center, in which case SCTP should be perfect.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/709537/eugene-beresovksy" title="3556 reputation" class="comment-user">Eugene Beresovksy</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment35476371_7359410"><span title="2014-04-21 09:21:45Z" class="relativetime-clean">Apr 21 at 9:21</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-35571511" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@EugeneBeresovksy: It's a few years since I posted that answer. My impression is that SCTP has not made significant headway since then. It is still used in a few specialized applications in controlled environments, but rarely seen in the wild. Windows and Mac OS X still lack SCTP support out of the box. The lack of familiarity and the brittleness of a protocol broken by most firewalls and NAT boxes make people reluctant to use it.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/242687/pehrs" title="635 reputation" class="comment-user">pehrs</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment35571511_7359410"><span title="2014-04-23 14:38:39Z" class="relativetime-clean">Apr 23 at 14:38</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-35590498" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@pehrs I'd like to use it within a data center, so no NATs involved, and no firewalls, except tho OS-builtin ones. In a Linux server environment, I hope it just works. But even using Windows, there are SCTP libraries - and I believe without having to tinker with the OS.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/709537/eugene-beresovksy" title="3556 reputation" class="comment-user">Eugene Beresovksy</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment35590498_7359410"><span title="2014-04-24 00:36:36Z" class="relativetime-clean">Apr 24 at 0:36</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-7359410" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="1420987"></a>
+<div id="answer-1420987" class="answer" data-answerid="1420987">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1420987">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">34</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>SCTP requires more design within the application to get the best use of it. There are more options than TCP, the Sockets-like API came later, and it is young. However I think most people that take the time to understand it (and who know the shortcomings of TCP) appreciate it -- it is a well designed protocol that builds on our ~30 years of knowledge of TCP and UDP.</p>
+
+<p>One of the aspects that requires some thought is that of streams. Streams provide (usually, I think you can turn it off) an order guarantee within them (much like a TCP connection) but there can be multiple streams per SCTP connection.  If your application's data can be sent over multiple streams then you avoid head-of-line blocking where the receiver starves due to one mislaid packet. Effectively different conversations can be had over the same connection without impacting each other.</p>
+
+<p>Another useful addition is that of multi-homing support -- one connection can be across multiple interfaces on both ends and it copes with failures. You can emulate this in TCP, but at the application layer.</p>
+
+<p>Proper link heartbeating, which is the first thing any application using TCP for non-transient connections implements, is there for free. </p>
+
+<p>My personal summary of SCTP is that it doesn't do anything you couldn't do another way (in TCP or UDP) with substantial application support. The thing it provides is the ability to not have to implement that code (badly) yourself.</p>
+
+<p>FYI, SCTP is mandated as supported for Diameter (cf RADIUS next gen). see RFC 3588</p>
+
+<pre>   Diameter clients MUST support either TCP or SCTP, while agents and
+   servers MUST support both.  Future versions of this specification MAY
+   mandate that clients support SCTP.
+</pre>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/1420987" title="short permalink to this answer" class="short-link" id="link-post-1420987">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/1420987/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-09-14 11:25:25Z" class="relativetime">Sep 14 '09 at 11:25</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/15290/bwooce"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/244d8d938d45c91d698672290d9f7592" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/15290/bwooce">Bwooce</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,145</span><span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1420987" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-1420987" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="15166352"></a>
+<div id="answer-15166352" class="answer" data-answerid="15166352">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="15166352">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">9</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>p1. SCTP mapped directly over IPv4 requires support in NAT gateways, which has never been widely deployed anywhere, and without it the typical NAT gateway will only permit one private host per public address to be using SCTP at a time.</p>
+
+<p>p2. SCTP mapped over UDP/IPv4 allows more private hosts per public address, but UDP mappings in IPv4/NAT gateways are notoriously tricky to establish and keep maintained, due to the fact that UDP is a connectionless transport without any explicit state for a NAT to track.</p>
+
+<p>p3. SCTP mapped directly over IPv6 requires... well... IPv6.  Have you tried to deploy IPv6? If so, have you tried to buy an IPv6 firewall?  Does it support SCTP?  How about a load balancer?  A SSL accelerator?</p>
+
+<p>p4. Finally, a lot of the Internet is pretty much constrained to what can fit through TCP port 80 and port 443, so SCTP of any flavor tends to lose there. Hence, you see efforts like the <a href="http://tools.ietf.org/wg/mptcp/">MPTCP</a> working group in IETF.</p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/15166352" title="short permalink to this answer" class="short-link" id="link-post-15166352">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/15166352/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-03-01 20:31:24Z" class="relativetime">Mar 1 '13 at 20:31</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/112191/james-woodyatt"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/b5f89fa26f52d9c76c8513c4ecf8ab1a" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/112191/james-woodyatt">james woodyatt</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,474</span><span title="9 silver badges"><span class="badge2"></span><span class="badgecount">9</span></span><span title="14 bronze badges"><span class="badge3"></span><span class="badgecount">14</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-15166352" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-15166352" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="15174829"></a>
+<div id="answer-15174829" class="answer" data-answerid="15174829">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="15174829">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">9</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>Many of us will be using SCTP soon, since it's used by WebRTC datachannels to create a TCP-like reliable layer on top of UDP -- SCTP over DTLS over UDP: <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-data-channel-04#section-6">http://tools.ietf.org/html/draft-ietf-rtcweb-data-channel-04#section-6</a></p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/15174829" title="short permalink to this answer" class="short-link" id="link-post-15174829">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/15174829/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-03-02 13:06:45Z" class="relativetime">Mar 2 '13 at 13:06</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/92887/cjb"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/2de9901913d2f414b7b174d2c2c69a88" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/92887/cjb">cjb</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">329</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-15174829" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-15174829" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="1171634"></a>
+<div id="answer-1171634" class="answer" data-answerid="1171634">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1171634">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">7</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>Reading the <a href="http://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol" rel="nofollow">SCTP Wikipedia page</a> I'd say that the main reason is that SCTP is a very young protocol (proposed in 2000) that is currently unsupported by the mainstream OSs (<strike>Windows</strike>, <strike>OS X</strike>, <strike>Linux</strike>).</p>
+
+<p>If "very young" seems inappropriate to you, think about <a href="http://en.wikipedia.org/wiki/IPv6" rel="nofollow">IPV6</a>: "in December 2008, despite marking its 10th anniversary as a Standards Track protocol, IPv6 was only in its infancy in terms of general worldwide deployment."</p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/1171634" title="short permalink to this answer" class="short-link" id="link-post-1171634">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/1171634/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/1171634/revisions" title="show all edits to this post">edited <span title="2012-12-17 11:11:09Z" class="relativetime">Dec 17 '12 at 11:11</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/4194/dmeister"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/b3ff30dabe2347263297c1a405d0c766" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/4194/dmeister">dmeister</a><br>
+        <span class="reputation-score" title="reputation score 10983" dir="ltr">11k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="41 silver badges"><span class="badge2"></span><span class="badgecount">41</span></span><span title="72 bronze badges"><span class="badge3"></span><span class="badgecount">72</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-07-23 13:16:11Z" class="relativetime">Jul 23 '09 at 13:16</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/103529/ildan"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/0f24a1381892d13891a066c21b6bff15" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/103529/ildan">IlDan</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,936</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="18 silver badges"><span class="badge2"></span><span class="badgecount">18</span></span><span title="28 bronze badges"><span class="badge3"></span><span class="badgecount">28</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1171634" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-991796" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">According to the Wikipedia article you linked to, SCTP is implemented in Linux, Solaris, FreeBSD, HP-UX and others.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/54175/spatz" title="3921 reputation" class="comment-user">spatz</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment991796_1171634"><span title="2009-07-23 13:49:22Z" class="relativetime-clean">Jul 23 '09 at 13:49</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-19175442" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The linked article now says also that it runs on OS X and Windows.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/4194/dmeister" title="10983 reputation" class="comment-user owner">dmeister</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment19175442_1171634"><span title="2012-12-17 11:11:34Z" class="relativetime-clean">Dec 17 '12 at 11:11</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-1171634" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="20290710"></a>
+<div id="answer-20290710" class="answer" data-answerid="20290710">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="20290710">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">5</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>SCTP is not very much known and not used/deployed a lot because:</p>
+
+<ul>
+<li>Widespread: Not widely integrated in TCP/IP stacks (in 2013: still missing natively in latest Mac OSX and Windows)</li>
+<li>Libraries: Few high level bindings in easy to use languages (Disclaimer: i'm maintainer of <a href="https://github.com/philpraxis/pysctp" rel="nofollow">pysctp</a>, SCTP easy stack support for Python)</li>
+<li>NAT: Doesn't cross NAT very well/at all (less than 1% internet home &amp; enterprise routers do NAT on SCTP).</li>
+<li>Popularity: No general public app use it</li>
+<li>Programming paradigm: it changed a bit: it's still a socket, but you can connect many hosts to many hosts (multihoming), datagram is ordered and reliable, erc...</li>
+<li>Complexity: SCTP stack is complex to implement (due to above)</li>
+<li>Competition: Multipath TCP is coming and should address multihoming needs / capabilities so people refrain from implementing SCTP if possible, waiting for MTCP</li>
+<li>Niche: Needs SCTP fills are very peculiar (ordered reliable datagrams, multistream) and not needed by much applications</li>
+<li>Security: SCTP evades security controls (some firewalls, most IDSes, all DLPs, does not appear on netstat except CentOS/Redhat/Fedora...)</li>
+<li>Audit-ability: Something like 3 companies in the world routinely do audits of SCTP security (Disclaimer: I work in one of them)</li>
+<li>Learning curve: Not much toolchain to play with SCTP (check the excellent <a href="http://manpages.ubuntu.com/manpages/hardy/man1/withsctp.1.html" rel="nofollow">withsctp</a> that combines nicely with netcat or use socat )</li>
+<li>Under the hood: Used mostly in telecom and everytime you send SMS, start surfing the net on your mobile or make phone calls, you're often triggering messages that flow over SCTP (SIGTRAN/SS7 with GSM/UMTS, Diameter with LTE/IMS/RCS, S1AP/X2AP with LTE), so you actually use it a lot but you never know about it ;-)</li>
+</ul>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/20290710" title="short permalink to this answer" class="short-link" id="link-post-20290710">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/20290710/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/20290710/revisions" title="show all edits to this post">edited <span title="2014-02-22 23:18:34Z" class="relativetime">Feb 22 at 23:18</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-11-29 17:20:07Z" class="relativetime">Nov 29 '13 at 17:20</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/3024786/phil-l"><div class="gravatar-wrapper-32"><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/e5880d615f63eeccf2fcd75d7e50a0e0" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/3024786/phil-l">Phil L.</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">71</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-20290710" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-20290710" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="1171644"></a>
+<div id="answer-1171644" class="answer" data-answerid="1171644">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1171644">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">3</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>It might not be well known, but it's not unused. Quite recently there was a <a href="http://tools.ietf.org/html/draft-natarajan-http-over-sctp-01" rel="nofollow">draft</a> published at the <a href="http://www.ietf.org/" rel="nofollow">IETF</a> about <em>Using SCTP as a Transport Layer Protocol for HTTP</em>. </p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/1171644" title="short permalink to this answer" class="short-link" id="link-post-1171644">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/1171644/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-07-23 13:17:30Z" class="relativetime">Jul 23 '09 at 13:17</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/33433/mkoeller"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/042325b4965a5aa782afb6c44361e4cf" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/33433/mkoeller">mkoeller</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,058</span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="20 bronze badges"><span class="badge3"></span><span class="badgecount">20</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1171644" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-21361172" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">When you said “not unused” I thought of actual usage of the protocol. But then you only gave an example of a <i>draft document</i>, that may potentially lead to real usage in the future.</span>
+                –&nbsp;
+                    <a href="https://stackoverflow.com/users/392626/kissaki" title="3800 reputation" class="comment-user">Kissaki</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#comment21361172_1171644"><span title="2013-03-01 21:38:15Z" class="relativetime-clean">Mar 1 '13 at 21:38</span></a></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-1171644" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="1171672"></a>
+<div id="answer-1171672" class="answer" data-answerid="1171672">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1171672">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>Sctp is born too late, and for many situation TCP is enough.</p>
+
+<p>Also, as I know most of its usage is on telecommunication area.</p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/1171672" title="short permalink to this answer" class="short-link" id="link-post-1171672">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/1171672/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/1171672/revisions" title="show all edits to this post">edited <span title="2009-07-23 13:26:56Z" class="relativetime">Jul 23 '09 at 13:26</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-07-23 13:21:26Z" class="relativetime">Jul 23 '09 at 13:21</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/75501/arsane"><div><img src="./networking - Why is SCTP not much used known - Stack Overflow_files/8f1164e56ce1dbdc12395e0a36c60dcd" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/75501/arsane">arsane</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">6,014</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="30 silver badges"><span class="badge2"></span><span class="badgecount">30</span></span><span title="38 bronze badges"><span class="badge3"></span><span class="badgecount">38</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1171672" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-1171672" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="https://stackoverflow.com/questions/1171555/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="1171555">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+							<h2 class="space">Your Answer</h2>
+
+
+
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+         
+        prepareEditor({
+            heartbeatType: 'answer',
+            bindNavPrevention: true,
+            postfix: "",
+            onDemand: true,
+            discardSelector: ".discard-answer"
+            ,immediatelyShowMarkdownHelp:true
+        });
+        
+
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="1acc1f4abba01c958a12fdf0c0622635">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="https://stackoverflow.com/users/login?returnurl=%2fquestions%2f1171555%2fwhy-is-sctp-not-much-used-known%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Stack Exchange</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid">
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', '%2fquestions%2f1171555%2fwhy-is-sctp-not-much-used-known%23new-answer');
+                    }
+                );
+            </script>
+            <noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;script&gt;
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            &lt;/script&gt;
+            &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106"&gt;
+                    &lt;span class="edit-field-overlay"&gt;required, but not shown&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="https://stackoverflow.com/questions/tagged/networking" class="post-tag" title="show questions tagged &#39;networking&#39;" rel="tag">networking</a> <a href="https://stackoverflow.com/questions/tagged/tcp" class="post-tag" title="show questions tagged &#39;tcp&#39;" rel="tag">tcp</a> <a href="https://stackoverflow.com/questions/tagged/popularity" class="post-tag" title="show questions tagged &#39;popularity&#39;" rel="tag">popularity</a> <a href="https://stackoverflow.com/questions/tagged/sctp" class="post-tag" title="show questions tagged &#39;sctp&#39;" rel="tag">sctp</a>  or <a href="https://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2009-07-23 13:02:51Z"><b>4 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>23694 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="https://stackoverflow.com/questions/1171555/why-is-sctp-not-much-used-known?lastactivity" class="lastactivity-link" title="2014-02-22 23:18:34Z">2 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk848044612",17).setZone(45) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk848044612">
+            </div>  
+    <div id="hireme">
+        <script>
+window.careers_adurl="//careers.stackoverflow.com/gethired/js",window.careers_cssurl="//cdn-careers.sstatic.net/careers/gethired/sidebar.min.css?v=146909b35fc7",window.careers_leaderboardcssurl="{leaderboardcssurl}",window.careers_companycssurl="//cdn-careers.sstatic.net/careers/gethired/company",window.careers_adselector="div#hireme",StackExchange.ready(function(){$.ajax({url:"//cdn-careers.sstatic.net/careers/gethired/loader.min.js?v=1cb79fa7a672",dataType:"script",cache:!0})});        </script>
+    </div>
+			  
+    
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/825109?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">4
+    </div>
+</a><a href="https://stackoverflow.com/questions/825109/does-sctp-works-as-advertised-using-linux?rq=1" class="question-hyperlink">Does SCTP works as advertised using Linux?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/2221318?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="https://stackoverflow.com/questions/2221318/problem-setting-up-sctp-client-server-in-linux?rq=1" class="question-hyperlink">problem setting up SCTP client-server in linux</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/2243411?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">8
+    </div>
+</a><a href="https://stackoverflow.com/questions/2243411/sctp-with-multihoming-as-a-drop-in-replacement-for-tcp?rq=1" class="question-hyperlink">SCTP with Multihoming as a Drop In Replacement for TCP</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/5717318?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="https://stackoverflow.com/questions/5717318/how-to-send-message-to-a-sctp-association-which-is-found-during-receive?rq=1" class="question-hyperlink">How to send message to a SCTP association which is found during receive?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/13832273?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="https://stackoverflow.com/questions/13832273/sctp-association?rq=1" class="question-hyperlink">SCTP association</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/15599173?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="https://stackoverflow.com/questions/15599173/sctp-association-3-streams-vs-3-tcp-connections?rq=1" class="question-hyperlink">SCTP association 3-streams vs. 3 TCP connections</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/15617621?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="https://stackoverflow.com/questions/15617621/how-is-multistreaming-in-sctp-different-from-opening-multiple-connections-in-tcp?rq=1" class="question-hyperlink">How is Multistreaming in SCTP different from opening Multiple Connections in TCP?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/18637464?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="https://stackoverflow.com/questions/18637464/setting-the-ppid-in-sctp?rq=1" class="question-hyperlink">Setting the ppid in sctp</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="https://stackoverflow.com/q/20836866?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="https://stackoverflow.com/questions/20836866/linux-kernel-on-tcp-and-sctp?rq=1" class="question-hyperlink">Linux Kernel on TCP and SCTP</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/112336/how-quickly-was-the-earth-rotating-250-million-years-ago" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How quickly was the Earth rotating 250 million years ago?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-matheducators" title="Mathematics Educators Stack Exchange"></div><a href="http://matheducators.stackexchange.com/questions/2253/when-handing-back-exams-what-should-we-tell-our-students-about-the-distribution" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:548 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When handing back exams, what should we tell our students about the distribution of exam scores?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/27027/where-is-the-worlds-largest-commercial-elevator" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where is the world's largest commercial elevator?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/47703/how-to-use-line-command-with-various-numbers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to use line command with various numbers?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-pets" title="Pets Stack Exchange"></div><a href="http://pets.stackexchange.com/questions/3173/what-advice-can-i-offer-a-friend-on-how-to-teach-their-cat-not-to-try-and-sneak" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:518 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What advice can I offer a friend on how to teach their cat not to try and sneak outside?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/238786/does-c-compiler-remove-optimize-useless-parentheses" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does C++ compiler remove/optimize useless parentheses?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/3844/why-turn-off-pitot-tube-heating" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why turn off pitot tube heating?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/23569441/is-it-possible-to-apply-css-to-half-of-a-character" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it possible to apply CSS to half of a character?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/165911/probability-of-a-pair-of-memory-cards-ending-up-as-neighbors" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Probability of a pair of memory cards ending up as neighbors
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/37585/when-does-a-character-get-fatigued" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When does a character get fatigued?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/20674/handling-unsolicited-proofs-of-famous-mathematical-problems" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Handling unsolicited proofs of famous mathematical problems
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/169838/really-in-a-negative-sentence" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    "Really" in a negative sentence
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/791807/answer-to-popular-mathematical-riddle" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Answer to popular mathematical riddle
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/97338/why-do-anovas-and-glm-negative-binomial-model-give-different-results-for-inter" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do ANOVAs and GLM (negative binomial model) give different results for interaction effects?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/57138/dark-on-light-or-light-on-dark" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Dark on Light or Light on Dark?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/594319/create-a-symbolic-link-without-ln" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    create a symbolic link without ln
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tridion" title="Tridion Stack Exchange"></div><a href="http://tridion.stackexchange.com/questions/5511/how-to-set-the-minimum-approval-status-of-a-bundle-and-items-in-bundle-in-workfl" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:485 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to set the minimum approval status of a bundle and items in bundle in workflow
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/23268/plural-or-singular" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Plural or Singular?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/49480/minimal-webcrawler-bad-structure-and-error-handling" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Minimal webcrawler - bad structure and error handling?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/26931/reverse-order-of-words-in-a-string-inplace" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Reverse order of words in a string inplace
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/37591/how-can-i-get-my-wizard-to-cast-low-level-spells-spontaneously" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I get my wizard to cast low-level spells spontaneously?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/23277/question-about-the-before-names" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Question about "the" before names
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/23916/can-i-mention-my-past-employers-lack-of-innovation-on-a-job-interview-cover-let" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can I mention my past employer's lack of innovation on a job interview/cover letter?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-wordpress" title="WordPress Development Stack Exchange"></div><a href="http://wordpress.stackexchange.com/questions/144132/make-shortcode-work-with-nested-double-quotes" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:110 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Make shortcode work with nested double quotes
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="https://stackoverflow.com/feeds/question/1171555" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/1171555/ivc/85c2');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/1171555/ivc/85c2" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang"></div></div>
+
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="https://stackoverflow.com/about">about</a>
+                    <a href="https://stackoverflow.com/help">help</a>
+                        <a href="https://stackoverflow.com/help/badges">badges</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/about/hiring">jobs</a>
+                    <a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MjAsImNtIjo5NTQsImNoIjoxMTc4LCJjciI6Mjc3NiwiZG0iOjQsImZjIjoyODYyLCJmbCI6Mjc1MSwibnciOjIyLCJydiI6MCwicHIiOjExNSwic3QiOjAsInVyIjoiaHR0cDovL3N0YWNrb3ZlcmZsb3cuY29tL2Fib3V0L2NvbnRhY3QiLCJyZSI6MX0&s=hRods5B22XvRBwWIwtIMekcyNF8">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="https://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (14)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="professional graphic designers and non-designers trying to do their own graphic design">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.5.9.1599
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('networking,tcp,popularity,sctp');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        
+        ga('set', 'dimension2', '|networking|tcp|popularity|sctp|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

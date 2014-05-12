@@ -1,0 +1,1611 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0109)https://webcache.googleusercontent.com/search?q=cache:http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--<base href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05">--><base href="."><style type="text/css"></style></head><body onload="addHeaderTags()"><div style="background:#fff;border:1px solid #999;margin:-1px -1px 0;padding:0;"><div style="background:#ddd;border:1px solid #999;color:#000;font:13px arial,sans-serif;font-weight:normal;margin:12px;padding:8px;text-align:left">This is Google's cache of <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05" style="text-decoration:underline;color:#00c">http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05</a>. It is a snapshot of the page as it appeared on Apr 16, 2014 09:00:49 GMT. The <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05" style="text-decoration:underline;color:#00c">current page</a> could have changed in the meantime. <a href="http://support.google.com/websearch/bin/answer.py?hl=en&p=cached&answer=1687222" style="text-decoration:underline;color:#00c">Learn more</a><br>Tip: To quickly find your search term on this page, press <b>Ctrl+F</b> or <b>⌘-F</b> (Mac) and use the find bar.<br><br><div style="float:right"><a href="http://webcache.googleusercontent.com/search?q=cache:http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05&strip=1" style="text-decoration:underline;color:#00c">Text-only version</a></div>
+<div>&nbsp;</div></div></div><div style="position:relative">
+
+
+
+    
+    <meta name="robots" content="index,follow">
+    <meta name="creator" content="rfcmarkup version 1.107">
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.Relation.Replaces" content="draft-stewart-behave-sctpnat">
+<meta name="DC.Identifier" content="urn:ietf:id:ietf-behave-sctpnat">
+<meta name="DC.Date.Issued" content="2013-09-09">
+<meta name="DC.Creator" content="Tuexen, Michael">
+<meta name="DC.Creator" content="Ruengeler, Irene">
+<meta name="DC.Creator" content="Stewart, Randall">
+<meta name="DC.Description.Abstract" content="Stream Control Transmission Protocol [RFC4960] provides a reliable\ncommunications channel between two end-hosts in many ways similar to\nTCP [RFC0793]. With the widespread deployment of Network Address\nTranslators (NAT), specialized code has been added to NAT for TCP that\nallows multiple hosts to reside behind a NAT and yet use only a single\nglobally unique IPv4 address, even when two hosts (behind a NAT)\nchoose the same port numbers for their connection. This additional\ncode is sometimes classified as Network Address and Port Translation\nor NAPT. To date, specialized code for SCTP has NOT yet been added to\nmost NATs so that only pure NAT is available. The end result of this\nis that only one SCTP capable host can be behind a NAT. This document\ndescribes an SCTP specific variant of NAT which provides similar\nfeatures of NAPT in the single point and multi-point traversal\nscenario.">
+<meta name="DC.Title" content="Stream Control Transmission Protocol (SCTP) Network Address Translation">
+
+    <link rel="icon" href="http://tools.ietf.org/images/id.png" type="image/png">
+    <link rel="shortcut icon" href="http://tools.ietf.org/images/id.png" type="image/png">
+    <title>draft-ietf-behave-sctpnat-05 - Stream Control Transmission Protocol (SCTP) Network Address Translation</title>
+    
+    
+    <style type="text/css">
+	body {
+	    margin: 0px 8px;
+            font-size: 1em;
+	}
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	    font-weight: bold;
+            line-height: 0pt;
+            display: inline;
+            white-space: pre;
+            font-family: monospace;
+            font-size: 1em;
+	    font-weight: bold;
+        }
+        pre {
+            font-size: 1em;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+	.pre {
+	    white-space: pre;
+	    font-family: monospace;
+	}
+	.header{
+	    font-weight: bold;
+	}
+        .newpage {
+            page-break-before: always;
+        }
+        .invisible {
+            text-decoration: none;
+            color: white;
+        }
+        a.selflink {
+          color: black;
+          text-decoration: none;
+        }
+        @media print {
+            body {
+                font-family: monospace;
+                font-size: 10.5pt;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 1em;
+            }
+        
+            a:link, a:visited {
+                color: inherit;
+                text-decoration: none;
+            }
+            .noprint {
+                display: none;
+            }
+        }
+	@media screen {
+	    .grey, .grey a:link, .grey a:visited {
+		color: #777;
+	    }
+            .docinfo {
+                background-color: #EEE;
+            }
+            .top {
+                border-top: 7px solid #EEE;
+            }
+            .bgwhite  { background-color: white; }
+            .bgred    { background-color: #F44; }
+            .bggrey   { background-color: #666; }
+            .bgbrown  { background-color: #840; }            
+            .bgorange { background-color: #FA0; }
+            .bgyellow { background-color: #EE0; }
+            .bgmagenta{ background-color: #F4F; }
+            .bgblue   { background-color: #66F; }
+            .bgcyan   { background-color: #4DD; }
+            .bggreen  { background-color: #4F4; }
+
+            .legend   { font-size: 90%; }
+            .cplate   { font-size: 70%; border: solid grey 1px; }
+	}
+    </style>
+    <!--[if IE]>
+    <style>
+    body {
+       font-size: 13px;
+       margin: 10px 10px;
+    }
+    </style>
+    <![endif]-->
+
+    <script type="text/javascript"><!--
+    function addHeaderTags() {
+	var spans = document.getElementsByTagName("span");
+	for (var i=0; i < spans.length; i++) {
+	    var elem = spans[i];
+	    if (elem) {
+		var level = elem.getAttribute("class");
+                if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
+                    elem.innerHTML = "<"+level+">"+elem.innerHTML+"</"+level+">";		
+                }
+	    }
+	}
+    }
+    var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>                   <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>                     <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>             <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>              <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td>      <td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td>         <td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard (old designation):</td> <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Internet Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>                  <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>                  <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
+    function showElem(id) {
+        var elem = document.getElementById(id);
+        elem.innerHTML = eval(id+"_html");
+        elem.style.visibility='visible';
+    }
+    function hideElem(id) {
+        var elem = document.getElementById(id);
+        elem.style.visibility='hidden';        
+        elem.innerHTML = "";
+    }
+    // -->
+    </script>
+
+
+   <div style="height: 13px;">
+      <div onmouseover="this.style.cursor=&#39;pointer&#39;;" onclick="showElem(&#39;legend&#39;);" onmouseout="hideElem(&#39;legend&#39;)" style="height: 6px; position: absolute;" class="pre noprint docinfo bgred" title="Click for colour legend.">                                                                        </div>
+      <div id="legend" class="docinfo noprint pre legend" style="position:absolute; top: 4px; left: 4ex; visibility:hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px; " onmouseover="showElem(&#39;legend&#39;);" onmouseout="hideElem(&#39;legend&#39;);">
+      </div>
+   </div>
+<span class="pre noprint docinfo top">[<a href="http://tools.ietf.org/html/" title="Document search and retrieval page">Docs</a>] [<a href="http://tools.ietf.org/id/draft-ietf-behave-sctpnat-05.txt" title="Plaintext version of this document">txt</a>|<a href="http://tools.ietf.org/pdf/draft-ietf-behave-sctpnat-05.txt" title="PDF version of this document">pdf</a>] [<a href="https://datatracker.ietf.org/doc/draft-ietf-behave-sctpnat" title="IESG Datatracker information for this document">Tracker</a>] [<a href="http://tools.ietf.org/wg/behave" title="The working group handling this document">WG</a>] [<a href="mailto:draft-ietf-behave-sctpnat@tools.ietf.org?subject=draft-ietf-behave-sctpnat%20" title="Send email to the document authors">Email</a>] [<a href="http://tools.ietf.org/rfcdiff?difftype=--hwdiff&url2=draft-ietf-behave-sctpnat-05.txt" title="Inline diff (wdiff)">Diff1</a>] [<a href="http://tools.ietf.org/rfcdiff?url2=draft-ietf-behave-sctpnat-05.txt" title="Side-by-side diff">Diff2</a>] [<a href="http://tools.ietf.org/idnits?url=http://tools.ietf.org/id/draft-ietf-behave-sctpnat-05.txt" title="Run an idnits check of this document">Nits</a>]          </span><br>
+<span class="pre noprint docinfo">                                                                        </span><br>
+<span class="pre noprint docinfo">Versions: (<a href="http://tools.ietf.org/html/draft-stewart-behave-sctpnat" title="Precursor">draft-stewart-behave-sctpnat</a>)   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-00">00</a>                           
+          <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-01">01</a> <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-02">02</a> <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-03">03</a> <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-04">04</a> <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05">05</a> <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-06">06</a> <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-07">07</a> <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-08">08</a> <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-09">09</a>                                    </span><br>
+<span class="pre noprint docinfo">                                                                        </span><br>
+<pre>Network Working Group                                         R. Stewart
+Internet-Draft                                            Adara Networks
+Intended status: BCP                                           M. Tuexen
+Expires: December 28, 2011                                  I. Ruengeler
+                                               Muenster Univ. of Applied
+                                                                Sciences
+                                                           June 26, 2011
+
+
+Stream Control Transmission Protocol (SCTP) Network Address Translation
+                    <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05.txt">draft-ietf-behave-sctpnat-05.txt</a>
+
+Abstract
+
+   Stream Control Transmission Protocol [<a href="http://tools.ietf.org/html/rfc4960" title="&quot;Stream Control Transmission Protocol&quot;">RFC4960</a>] provides a reliable
+   communications channel between two end-hosts in many ways similar to
+   TCP [<a href="http://tools.ietf.org/html/rfc0793" title="&quot;Transmission Control Protocol&quot;">RFC0793</a>].  With the widespread deployment of Network Address
+   Translators (NAT), specialized code has been added to NAT for TCP
+   that allows multiple hosts to reside behind a NAT and yet use only a
+   single globally unique IPv4 address, even when two hosts (behind a
+   NAT) choose the same port numbers for their connection.  This
+   additional code is sometimes classified as Network Address and Port
+   Translation or NAPT.  To date, specialized code for SCTP has NOT yet
+   been added to most NATs so that only pure NAT is available.  The end
+   result of this is that only one SCTP capable host can be behind a
+   NAT.
+
+   This document describes an SCTP specific variant of NAT which
+   provides similar features of NAPT in the single point and multi-point
+   traversal scenario.
+
+Status of this Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of <a href="http://tools.ietf.org/html/bcp78">BCP 78</a> and <a href="http://tools.ietf.org/html/bcp79">BCP 79</a>.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at <a href="http://datatracker.ietf.org/drafts/current/">http://datatracker.ietf.org/drafts/current/</a>.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on December 28, 2011.
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 1]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-2" id="page-2" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-2" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+Copyright Notice
+
+   Copyright (c) 2011 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to <a href="http://tools.ietf.org/html/bcp78">BCP 78</a> and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (<a href="http://trustee.ietf.org/license-info">http://trustee.ietf.org/license-info</a>) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-4">Section 4</a>.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+
+Table of Contents
+
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-1">1</a>.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . .  <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-3">3</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-2">2</a>.  Conventions  . . . . . . . . . . . . . . . . . . . . . . . . .  <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-3">3</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-3">3</a>.  Terminology  . . . . . . . . . . . . . . . . . . . . . . . . .  <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-3">3</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-4">4</a>.  SCTP NAT Traversal Scenarios . . . . . . . . . . . . . . . . .  <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-4">4</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-4.1">4.1</a>.  Single Point Traversal . . . . . . . . . . . . . . . . . .  <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-4">4</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-4.2">4.2</a>.  Multi Point Traversal  . . . . . . . . . . . . . . . . . .  <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-5">5</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-5">5</a>.  Limitations of classical NAPT for SCTP . . . . . . . . . . . .  <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-6">6</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-6">6</a>.  The SCTP specific variant of NAT . . . . . . . . . . . . . . .  <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-6">6</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-7">7</a>.  Nat to SCTP  . . . . . . . . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-10">10</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-8">8</a>.  Handling of fragmented SCTP packets  . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-10">10</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-9">9</a>.  Simplification for small NATs  . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-10">10</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10">10</a>. Various examples of NAT traversals . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-10">10</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.1">10.1</a>. Single-homed client to single-homed server . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-10">10</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.2">10.2</a>. Single-homed client to multi-homed server  . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-13">13</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.3">10.3</a>. Multihomed client and server . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-15">15</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.4">10.4</a>. NAT loses its state  . . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-18">18</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.5">10.5</a>. Peer-to-Peer Communication . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-20">20</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-11">11</a>. IANA Considerations  . . . . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-24">24</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-12">12</a>. Security considerations  . . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-24">24</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-13">13</a>. Acknowledgments  . . . . . . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-25">25</a>
+   <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-14">14</a>. References . . . . . . . . . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-25">25</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-14.1">14.1</a>. Normative References . . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-25">25</a>
+     <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-14.2">14.2</a>. Informative References . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-25">25</a>
+   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . <a href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-25">25</a>
+
+
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 2]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-3" id="page-3" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-3" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+<span class="h2"><h2><a class="selflink" name="section-1" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-1">1</a>.  Introduction</h2></span>
+
+   Stream Control Transmission Protocol [<a href="http://tools.ietf.org/html/rfc4960" title="&quot;Stream Control Transmission Protocol&quot;">RFC4960</a>] provides a reliable
+   communications channel between two end-hosts in many ways similar to
+   TCP [<a href="http://tools.ietf.org/html/rfc0793" title="&quot;Transmission Control Protocol&quot;">RFC0793</a>].  With the widespread deployment of Network Address
+   Translators (NAT), specialized code has been added to NAT for TCP
+   that allows multiple hosts to reside behind a NAT and yet use only a
+   single globally unique IPv4 address, even when two hosts (behind a
+   NAT) choose the same port numbers for their connection.  This
+   additional code is sometimes classified as Network Address and Port
+   Translation or NAPT.  To date, specialized code for SCTP has NOT yet
+   been added to most NATs so that only true NAT is available.  The end
+   result of this is that only one SCTP capable host can be behind a
+   NAT.
+
+   This document proposes an SCTP specific variant NAT that provides the
+   NAPT functionality without changing SCTP port numbers.  The authors
+   feel it is possible and desirable to make these changes for a number
+   of reasons.
+
+   o  It is desirable for SCTP internal end-hosts on multiple platforms
+      to be able to share a NAT's public IP address, much as TCP does
+      today.
+
+   o  If a NAT does not need to change any data within an SCTP packet it
+      will reduce the processing burden of NAT'ing SCTP by NOT needing
+      to execute the CRC32c checksum required by SCTP.
+
+   o  Not having to touch the IP payload makes the processing of ICMP
+      messages in NATs easier.
+
+
+<span class="h2"><h2><a class="selflink" name="section-2" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-2">2</a>.  Conventions</h2></span>
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in [<a href="http://tools.ietf.org/html/rfc2119" title="&quot;Key words for use in RFCs to Indicate Requirement Levels&quot;">RFC2119</a>].
+
+
+<span class="h2"><h2><a class="selflink" name="section-3" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-3">3</a>.  Terminology</h2></span>
+
+   For this discussion we will use several terms, which we will define
+   and point out in a figure.
+
+   o  Private-Address (Priv-Addr) - The private address that is known to
+      the internal host.
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 3]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-4" id="page-4" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-4" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   o  Internal-Port (Int-Port) - The port number that is in use by the
+      host holding the Private-Address.
+
+   o  Internal-VTag (Int-VTag) - The Verification Tag that the internal
+      host has chosen for its communication.  The VTag is a unique 32
+      bit tag that must accompany any incoming SCTP packet for this
+      association to the Private-Address.
+
+   o  External-Address (Ext-Addr) - The address that an internal host is
+      attempting to contact.
+
+   o  External-Port (Ext-Port) - The port number of the peer process at
+      the External-Address.
+
+   o  External-VTag (Ext-VTag) - The Verification Tag that the host
+      holding the External-Address has chosen for its communication.
+      The VTag is a unique 32 bit tag that must accompany any incoming
+      SCTP packet for this association to the External-Address.
+
+   o  Public-Address (Pub-Addr) - The public address assigned to the NAT
+      box which it uses as a source address when sending packets towards
+      the External-Address.
+
+
+   Internal Network      |         External Network
+                         |
+             Private     | Public                    External
+ +---------+ Address     | Address     /--\/--\      Address +---------+
+ |  SCTP   |          +-----+         /        \             |  SCTP   |
+ |end point|==========| NAT |======= | Internet | ========== |end point|
+ |    A    |          +-----+         \        /             |    B    |
+ +---------+ Internal    |             \--/\--/     External +---------+
+  Internal      Port     |                             Port    External
+    VTag                 |                                       VTag
+
+
+
+<span class="h2"><h2><a class="selflink" name="section-4" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-4">4</a>.  SCTP NAT Traversal Scenarios</h2></span>
+
+   This section defines the notion of single and multi-point NAT
+   traversal.
+
+<span class="h3"><h3><a class="selflink" name="section-4.1" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-4.1">4.1</a>.  Single Point Traversal</h3></span>
+
+   In this case, all packets in the SCTP association go through a single
+   NAT, as shown below:
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 4]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-5" id="page-5" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-5" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   Internal Network      |       External Network
+                         |
+ +---------+             |               /--\/--\            +---------+
+ |  SCTP   |          +-----+           /        \           |  SCTP   |
+ |end point|==========| NAT |========= | Internet | =========|end point|
+ |    A    |          +-----+           \        /           |    B    |
+ +---------+             |               \--/\--/            +---------+
+                         |
+
+   A variation of this case is shown below, i.e., multiple NATs in a
+   single path:
+
+         Internal | External :: Internal | External
+                  |          ::          |
+ +---------+      |          ::          |       /--\/--\    +---------+
+ |  SCTP   |   +-----+       ::       +-----+   /        \   |  SCTP   |
+ |end point|===| NAT |=======::=======| NAT |==| Internet |==|end point|
+ |    A    |   +-----+       ::       +-----+   \        /   |    B    |
+ +---------+      |          ::          |       \--/\--/    +---------+
+                  |          ::          |
+
+   In this single point traversal scenario, we must acknowledge that
+   while one of the main benefits of SCTP multi-homing is redundant
+   paths, the NAT function represents a single point of failure in the
+   path of the SCTP multi-home association.  However, the rest of the
+   path may still benefit from path diversity provided by SCTP multi-
+   homing.
+
+   The two SCTP endpoints in this case can be either single-homed or
+   multi-homed.  However, the important thing is that the NAT (or NATs)
+   in this case sees ALL the packets of the SCTP association.
+
+<span class="h3"><h3><a class="selflink" name="section-4.2" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-4.2">4.2</a>.  Multi Point Traversal</h3></span>
+
+   This case involves multiple NATs and each NAT only sees some of the
+   packets in the SCTP association.  An example is shown below:
+
+
+          Internal       |      External
+                      +------+             /---\/---\
+ +---------+  /=======|NAT A |=========\  /          \       +---------+
+ |  SCTP   | /        +------+          \/            \      |  SCTP   |
+ |end point|/       ...                 |   Internet   |=====|end point|
+ |    A    |\                            \            /      |    B    |
+ +---------+ \        +------+          / \          /       +---------+
+              \=======|NAT B |=========/   \---\/---/
+                      +------+
+                         |
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 5]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-6" id="page-6" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-6" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   This case does NOT apply to a single-homed SCTP association (i.e.,
+   BOTH endpoints in the association use only one IP address).  The
+   advantage here is that the existence of multiple NAT traversal points
+   can preserve the path diversity of a multi-homed association for the
+   entire path.  This in turn can improve the robustness of the
+   communication.
+
+
+<span class="h2"><h2><a class="selflink" name="section-5" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-5">5</a>.  Limitations of classical NAPT for SCTP</h2></span>
+
+   Using classical NAPT may result in changing one of the SCTP port
+   numbers during the processing which requires the recomputation of the
+   transport layer checksum.  Whereas for UDP and TCP this can be done
+   very efficently, for SCTP the checksum (CRC32c) over the entire
+   packet needs to be recomputed.  This would add considerable to the
+   NAT computational burden, however hardware support may mitigate this
+   in some implementations.
+
+   An SCTP endpoint may have multiple addresses but only has a single
+   port number.  To make multipoint travesal work, all the NATs involved
+   must recognize the packets they see as belonging to the same SCTP
+   association and perform port number translation in a consistent way.
+   One possible way of doing this is to use pre-defined table of ports
+   and addresses configured within each NAT.  Other mechanisms could
+   make use of NAT to NAT communcation.  Such mechanisms are considered
+   by the authors to be undeployable on a wide scale base and thus not a
+   recommended solution.  Therefore the SCTP variant of NAT has been
+   developed.
+
+
+<span class="h2"><h2><a class="selflink" name="section-6" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-6">6</a>.  The SCTP specific variant of NAT</h2></span>
+
+   In this section we assume that we have multiple SCTP capable hosts
+   behind a NAT which has one Public-Address.  Furthermore we are
+   focusing in this section on the single point traversal scenario.
+
+   The modification of SCTP packets sent to the public Internet is easy.
+   The source address of the packet has to be replaced with the Public-
+   Address.  It may also be necessary to establish some state in the NAT
+   box to handle incoming packets, which is discussed later.
+
+   For SCTP packets coming from the public Internet the destination
+   address of the packets has to be replaced with the Private-Address of
+   the host the packet has to be delivered to.  The lookup of the
+   Private-Address is based on the External-VTag, External-Port,
+   External-Address, Internal-VTag and the Internal-Port.
+
+   For the SCTP NAT processing the NAT box has to maintain a table of
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 6]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-7" id="page-7" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-7" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   Internal-VTag, Internal-Port, Private-Address, External-VTag,
+   External-Port and External-Address.  An entry in that table is called
+   a NAT state control block.  The function Create() obtains the just
+   mentioned parameters and returns a NAT-State control block.
+
+   The processing of outgoing SCTP packets containing an INIT-chunk is
+   described in the following figure.  The scenario shown is valid for
+   all message flows in this section.
+
+                                         /--\/--\
+ +--------+           +-----+           /        \            +--------+
+ | Host A | &lt;-------&gt; | NAT | &lt;------&gt; | Internet | &lt;-------&gt; | Host B |
+ +--------+           +-----+           \         /           +--------+
+                                         \--/\---/
+
+
+              INIT[Initiate-Tag]
+ Priv-Addr:Int-Port ------&gt; Ext-Addr:Ext-Port
+                   Ext-VTag=0
+
+                    Create(Initiate-Tag,Internal-Port,Private-Address,
+                           0,External-Port,External-Address)
+                    Returns(NAT-State control block)
+
+            Translate To:
+
+                         INIT[Initiate-Tag]
+            Pub-Addr:Int-Port ------&gt; Ext-Addr:Ext-Port
+                             Ext-VTag=0
+
+   It should be noted that normally a NAT control block will be created.
+   However, it is possible that there is already a NAT control block
+   with the same External-Address, External-Port, Internal-Port, and
+   Internal-VTag but different Private-Address.  In this case the INIT
+   SHOULD be dropped by the NAT and an ABORT SHOULD be sent back to the
+   SCTP host with the M-Bit set and an appropriate error cause [please
+   see xxx-tsvwg-document-xx for the format].
+
+   It is also possible that a connection to External-Address and
+   External-Port exists without an Internal-VTag conflict but the
+   External-Address does not support the DISABLE_RESTART feature (noted
+   in the NAT control block when the prior connection was established).
+   In such a case the INIT SHOULD be dropped by the NAT and an ABORT
+   SHOULD be sent back to the SCTP host with the M-Bit set and an
+   appropriate error cause [please see xxx-tsvwg-document-xx for the
+   format].
+
+   The processing of outgoing SCTP packets containing no INIT-chunk is
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 7]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-8" id="page-8" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-8" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   described in the following figure.
+
+                                         /--\/--\
+ +--------+           +-----+           /        \            +--------+
+ | Host A | &lt;-------&gt; | NAT | &lt;------&gt; | Internet | &lt;-------&gt; | Host B |
+ +--------+           +-----+           \         /           +--------+
+                                         \--/\---/
+
+ Priv-Addr:Int-Port ------&gt; Ext-Addr:Ext-Port
+                   Ext-VTag
+
+
+                             Translate To:
+
+                             Pub-Addr:Int-Port ------&gt; Ext-Addr:Ext-Port
+                                               Ext-VTag
+
+   The processing of incoming SCTP packets containing INIT-ACK chunks is
+   described in the following figure.  The Lookup() function getting as
+   input the Internal-VTag, Internal-Port, External-VTag (=0), External-
+   Port, and External-Address, returns the corresponding entry of the
+   NAT table and updates the External-VTag by substituting it with the
+   value of the Initiate-Tag of the INIT-ACK chunk.  The wildcard
+   character signifies that the parameter's value is not considered in
+   the Lookup() function or changed in the Update() function,
+   respectively.
+
+                                         /--\/--\
+ +--------+           +-----+           /        \            +--------+
+ | Host A | &lt;-------&gt; | NAT | &lt;------&gt; | Internet | &lt;-------&gt; | Host B |
+ +--------+           +-----+           \         /           +--------+
+                                         \--/\---/
+
+                                          INIT-ACK[Initiate-Tag]
+                             Pub-Addr:Int-Port &lt;------ Ext-Addr:Ext-Port
+                                               Int-VTag
+
+            Lookup(Internal-VTag,Internal-Port,*,
+                   0,External-Port,External-Address)
+            Update(*, *, *, Initiate-Tag, *, *)
+
+            Returns(NAT-State control block containing Private-Address)
+
+                INIT-ACK[Initiate-Tag]
+ Priv-Addr:Int-Port &lt;------ Ext-Addr:Ext-Port
+                    Int-VTag
+
+   In the case Lookup fails, the SCTP packet is dropped.  The Update
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 8]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-9" id="page-9" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-9" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   routine inserts the External-VTag (the Initiate-Tag of the INIT-ACK
+   chunk) in the NAT state control block.
+
+   The processing of incoming SCTP packets containing an ABORT or
+   SHUTDOWN-COMPLETE chunk with the T-Bit set is described in the
+   following figure.
+
+                                         /--\/--\
+ +--------+           +-----+           /        \            +--------+
+ | Host A | &lt;-------&gt; | NAT | &lt;------&gt; | Internet | &lt;-------&gt; | Host B |
+ +--------+           +-----+           \         /           +--------+
+                                         \--/\---/
+
+                             Pub-Addr:Int-Port &lt;------ Ext-Addr:Ext-Port
+                                               Ext-VTag
+
+             Lookup(0, Internal-Port, *,External-VTag,
+                    External-Port, External-Address)
+
+             Returns(NAT-State control block containing Private-Address)
+
+ Priv-Addr:Int-Port &lt;------ Ext-Addr:Ext-Port
+                    Ext-VTag
+
+   The processing of other incoming SCTP packets is described in the
+   following figure.
+
+                                         /--\/--\
+ +--------+           +-----+           /        \            +--------+
+ | Host A | &lt;-------&gt; | NAT | &lt;------&gt; | Internet | &lt;-------&gt; | Host B |
+ +--------+           +-----+           \         /           +--------+
+                                         \--/\---/
+
+                             Pub-Addr:Int-Port &lt;------ Ext-Addr:Ext-Port
+                                               Int-VTag
+
+               Lookup(Internal-VTag, Internal-Port, *,
+                        *, External-Port, External-Address)
+
+               Returns(NAT-State control block containing Local-Address)
+
+ Priv-Addr:Int-Port &lt;------ Ext-Addr:Ext-Port
+                    Int-VTag
+
+   For an incoming packet containing an INIT-chunk a table lookup is
+   made only based on the addresses and port numbers.  If an entry with
+   an External-VTag of zero is found, it is considered a match and the
+   External-VTag is updated.
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011               [Page 9]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-10" id="page-10" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-10" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   This allows the handling of INIT-collision through NAT.
+
+
+<span class="h2"><h2><a class="selflink" name="section-7" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-7">7</a>.  Nat to SCTP</h2></span>
+
+   This document at various places discusses the sending of specialized
+   SCTP chunks (e.g. an ABORT with M-Bit set).  These chunks and
+   proceedures are not defined in this document, but instead are defined
+   in [xxxxx].  The NAT implementor should refer to [xxxx] for detailed
+   descriptions of packet format and procedures.
+
+
+<span class="h2"><h2><a class="selflink" name="section-8" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-8">8</a>.  Handling of fragmented SCTP packets</h2></span>
+
+   A NAT box MUST support IP reassembly of received fragmented SCTP
+   packets.  The fragments may arrive in any order.
+
+   When an SCTP packet has to be fragmented by the NAT box and the IP
+   header forbids fragmentation a corresponding ICMP packet SHOULD be
+   sent.
+
+
+<span class="h2"><h2><a class="selflink" name="section-9" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-9">9</a>.  Simplification for small NATs</h2></span>
+
+   Small NAT boxes, i.e.  NAT boxes which only have to support a small
+   number of concurrent SCTP associations, MAY not take the external
+   address into account when processing packets.  Therefore the
+   External-Address could also be removed from the NAT table.
+
+   This simplification may make implementing a NAT box easier, however,
+   the collision probability is higher than using a mapping which takes
+   the external address into account.
+
+
+<span class="h2"><h2><a class="selflink" name="section-10" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10">10</a>.  Various examples of NAT traversals</h2></span>
+
+<span class="h3"><h3><a class="selflink" name="section-10.1" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.1">10.1</a>.  Single-homed client to single-homed server</h3></span>
+
+   The internal client starts the association with the external server
+   via a four-way-handshake.  Host A starts by sending an INIT chunk.
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 10]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-11" id="page-11" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-11" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+                                         /--\/--\
+ +--------+           +-----+           /        \            +--------+
+ | Host A | &lt;-------&gt; | NAT | &lt;------&gt; | Internet | &lt;-------&gt; | Host B |
+ +--------+           +-----+           \         /           +--------+
+                                         \--/\---/
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT    |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+--- -------+----------+--------+-----------+
+
+    INIT[Initiate-Tag = 1234]
+ 10.0.0.1:1 ------&gt; 100.0.0.1:2
+         Ext-VTtag = 0
+
+   A NAT entry is created, the source address is substituted and the
+   packet is sent on:
+
+        NAT creates entry:
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT    |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |     0    |    2   | 100.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+                                  INIT[Initiate-Tag = 1234]
+                    101.0.0.1:1 ---------------------------&gt; 100.0.0.1:2
+                                         Ext-VTtag = 0
+
+   Host B receives the INIT and sends an INIT-ACK with the NAT's
+   external address as destination address.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 11]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-12" id="page-12" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-12" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+                                         /--\/--\
+ +--------+           +-----+           /        \            +--------+
+ | Host A | &lt;-------&gt; | NAT | &lt;------&gt; | Internet | &lt;-------&gt; | Host B |
+ +--------+           +-----+           \         /           +--------+
+                                         \--/\---/
+
+                                  INIT-ACK[Initiate-Tag = 5678]
+                    101.0.0.1:1 &lt;--------------------------- 100.0.0.1:2
+                                          Int-VTag = 1234
+
+ NAT updates entry:
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT    |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |    5678  |    2   | 100.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+
+ INIT-ACK[Initiate-Tag = 5678]
+ 10.0.0.1:1 &lt;------ 100.0.0.1:2
+           Int-VTag = 1234
+
+
+   The handshake finishes with a COOKIE-ECHO acknowledged by a COOKIE-
+   ACK.
+
+                                         /--\/--\
+ +--------+           +-----+           /        \            +--------+
+ | Host A | &lt;-------&gt; | NAT | &lt;------&gt; | Internet | &lt;-------&gt; | Host B |
+ +--------+           +-----+           \         /           +--------+
+                                         \--/\---/
+
+          COOKIE-ECHO
+ 10.0.0.1:1 ------&gt; 100.0.0.1:2
+        Ext-VTag = 5678
+
+                                          COOKIE-ECHO
+                    101.0.0.1:1 ---------------------------&gt; 100.0.0.1:2
+                                        Ext-VTag = 5678
+
+
+                                          COOKIE-ACK
+                    101.0.0.1:1 &lt;--------------------------- 100.0.0.1:2
+                                          Int-VTag = 1234
+
+             COOKIE-ACK
+ 10.0.0.1:1 &lt;------ 100.0.0.1:2
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 12]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-13" id="page-13" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-13" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+            Int-VTag = 1234
+
+<span class="h3"><h3><a class="selflink" name="section-10.2" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.2">10.2</a>.  Single-homed client to multi-homed server</h3></span>
+
+   The internal client is single-homed whereas the external server is
+   multi-homed.  The client (Host A) sends an INIT like in the single-
+   homed case.
+
+                                                 +--------+
+                                 /--\/--\      /-|Router 1| \
+ +------+          +-----+      /        \    /  +--------+  \  +------+
+ | Host | &lt;------&gt; | NAT | &lt;-&gt; | Internet | ==                ==| Host |
+ |   A  |          +-----+      \        /    \  +--------+  /  |   B  |
+ +------+                        \--/\--/      \-|Router 2|-/   +------+
+                                                 +--------+
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT    |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+--- -------+----------+--------+-----------+
+
+
+  INIT[Initiate-Tag = 1234]
+ 10.0.0.1:1 ---&gt; 100.0.0.1:2
+        Ext-VTag = 0
+
+   NAT creates entry:
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT    |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |     0    |    2   | 100.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+                                INIT[Initiate-Tag = 1234]
+                 101.0.0.1:1 ------------------------------&gt; 100.0.0.1:2
+                                       Ext-VTag = 0
+
+
+   The server (Host B) includes its two addresses in the INIT-ACK chunk,
+   which results in two NAT entries.
+
+
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 13]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-14" id="page-14" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-14" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+                                                 +--------+
+                                 /--\/--\      /-|Router 1| \
+ +------+          +-----+      /        \    /  +--------+  \  +------+
+ | Host | &lt;------&gt; | NAT | &lt;-&gt; | Internet | ==                ==| Host |
+ |   A  |          +-----+      \        /    \  +--------+  /  |   B  |
+ +------+                        \--/\--/      \-|Router 2|-/   +------+
+                                                 +--------+
+
+                     INIT-ACK[Initiate-tag = 5678, IP-Addr = 100.1.0.1]
+                 101.0.0.1:1 &lt;------------------------------ 100.0.0.1:2
+                                        Int-VTag = 1234
+
+   NAT updates first entry and creates entry for second address:
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT    |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |    5678  |    2   | 100.0.0.1 |
+        |  1234   |    1   |  10.0.0.1 |    5678  |    2   | 100.1.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+
+ INIT-ACK[Initiate-Tag = 5678]
+ 10.0.0.1:1 &lt;--- 100.0.0.1:2
+          Int-VTag = 1234
+
+   The handshake finishes with a COOKIE-ECHO acknowledged by a COOKIE-
+   ACK.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 14]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-15" id="page-15" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-15" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+                                                 +--------+
+                                 /--\/--\      /-|Router 1| \
+ +------+          +-----+      /        \    /  +--------+  \  +------+
+ | Host | &lt;------&gt; | NAT | &lt;-&gt; | Internet | ==                ==| Host |
+ |   A  |          +-----+      \        /    \  +--------+  /  |   B  |
+ +------+                        \--/\--/      \-|Router 2|-/   +------+
+                                                 +--------+
+
+        COOKIE-ECHO
+ 10.0.0.1:1 ---&gt; 100.0.0.1:2
+        ExtVTag = 5678
+
+                                      COOKIE-ECHO
+                 101.0.0.1:1 ------------------------------&gt; 100.0.0.1:2
+                                      Ext-VTag = 5678
+
+
+                                      COOKIE-ACK
+                 101.0.0.1:1 &lt;------------------------------ 100.0.0.1:2
+                                      Int-VTag = 1234
+
+           COOKIE-ACK
+ 10.0.0.1:1 &lt;--- 100.0.0.1:2
+          Int-VTag = 1234
+
+<span class="h3"><h3><a class="selflink" name="section-10.3" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.3">10.3</a>.  Multihomed client and server</h3></span>
+
+   The client (Host A) sends an INIT to the server (Host B), but does
+   not include the second address.
+
+                +-------+
+             /--| NAT 1 |--\       /--\/--\
+ +------+   /   +-------+   \     /        \     +--------+
+ | Host |===                 ====| Internet |====| Host B |
+ |   A  |   \   +-------+   /     \        /     +--------+
+ +------+    \--| NAT 2 |--/       \--/\--/
+                +-------+
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT 1  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+--- -------+----------+--------+-----------+
+
+  INIT[Initiate-Tag = 1234]
+ 10.0.0.1:1 --------&gt; 100.0.0.1:2
+          Ext-VTag = 0
+
+   NAT 1 creates entry:
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 15]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-16" id="page-16" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-16" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT 1  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |     0    |    2   | 100.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+
+                                  INIT[Initiate-Tag = 1234]
+                      101.0.0.1:1 -------------------------&gt; 100.0.0.1:2
+                                          ExtVTag = 0
+
+   Host B includes its second address in the INIT-ACK, which results in
+   two NAT entries in NAT 1.
+
+                       +-------+
+              /--------| NAT 1 |--------\       /--\/--\
+ +------+    /         +-------+         \     /        \     +--------+
+ | Host |====                             ====| Internet |====| Host B |
+ |   A  |    \         +-------+         /     \        /     +--------+
+ +------+     \--------| NAT 2 |--------/       \--/\--/
+                       +-------+
+
+                      INIT-ACK[Initiate-Tag = 5678, IP-Addr = 100.1.0.1]
+                      101.0.0.1:1 &lt;------------------------- 100.0.0.1:2
+                                           Int-VTag = 1234
+
+   NAT 1 updates first entry and creates complete entry for second
+   address:
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT 1  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |    5678  |    2   | 100.0.0.1 |
+        |  1234   |    1   |  10.0.0.1 |    5678  |    2   | 100.1.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+
+   INIT-ACK[Initiate-Tag = 5678]
+ 10.0.0.1:1 &lt;---------100.0.0.1:2
+             Int-VTag = 1234
+
+   The handshake finishes with a COOKIE-ECHO acknowledged by a COOKIE-
+   ACK.
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 16]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-17" id="page-17" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-17" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+                       +-------+
+              /--------| NAT 1 |--------\       /--\/--\
+ +------+    /         +-------+         \     /        \     +--------+
+ | Host |====                             ====| Internet |====| Host B |
+ |   A  |    \         +-------+         /     \        /     +--------+
+ +------+     \--------| NAT 2 |--------/       \--/\--/
+                       +-------+
+
+           COOKIE-ECHO
+ 10.0.0.1:1 --------&gt; 100.0.0.1:2
+           Ext-VTag = 5678
+
+                                          COOKIE-ECHO
+                         101.0.0.1:1 ----------------------&gt; 100.0.0.1:2
+                                          Ext-VTag = 5678
+
+
+                                           COOKIE-ACK
+                         101.0.0.1:1 &lt;---------------------- 100.0.0.1:2
+                                          Int-VTag = 1234
+
+             COOKIE-ACK
+ 10.0.0.1:1 &lt;------- 100.0.0.1:2
+            Int-VTag = 1234
+
+   Host A announces its second address in an ASCONF.  The address
+   parameter contains an undefined address (0) to indicate that the
+   source address should be added.  The lookup address pararmeter within
+   the ASCONF chunk will also contain the pair of Vtags (external and
+   internal) so that the NAT may populate its table completely with this
+   single packet.
+
+                       +-------+
+              /--------| NAT 1 |--------\       /--\/--\
+ +------+    /         +-------+         \     /        \     +--------+
+ | Host |====                             ====| Internet |====| Host B |
+ |   A  |    \         +-------+         /     \        /     +--------+
+ +------+     \--------| NAT 2 |--------/       \--/\--/
+                       +-------+
+
+ ASCONF [ADD-IP=0.0.0.0, INT-VTag=1234, Ext-VTag = 5678]
+ 10.1.0.1:1 --------&gt; 100.1.0.1:2
+          Ext-VTag = 5678
+
+   NAT 2 creates complete entry:
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 17]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-18" id="page-18" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-18" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT 2  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.1.0.1 |    5678  |    2   | 100.1.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+
+                   ASCONF [ADD-IP,Int-VTag=1234, Ext-VTag = 5678]
+                      101.1.0.1:1 -------------------------&gt; 100.1.0.1:2
+                                         Ext-VTag = 5678
+
+                                             ASCONF-ACK
+                      101.1.0.1:1 &lt;------------------------- 100.1.0.1:2
+                                            Int-VTag = 1234
+
+           ASCONF-ACK
+ 10.1.0.1:1 &lt;----- 100.1.0.1:2
+          Int-VTag = 1234
+
+<span class="h3"><h3><a class="selflink" name="section-10.4" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.4">10.4</a>.  NAT loses its state</h3></span>
+
+   Assocation is already established between Host A and Host B, when the
+   NAT loses its state and obtains a new public address.  Host A sends a
+   DATA chunk to Host B.
+
+                                          /--\/--\
+ +--------+              +-----+         /        \         +--------+
+ | Host A | &lt;----------&gt; | NAT | &lt;----&gt; | Internet | &lt;----&gt; | Host B |
+ +--------+              +-----+         \        /         +--------+
+                                          \--/\--/
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT A  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |    5678  |    2   | 100.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+                DATA
+ 10.0.0.1:1 ----------&gt; 100.0.0.1:2
+             Ext-VTag = 5678
+
+   The NAT box cannot find entry for the association.  It sends ERROR
+   message with the M-Bit set and the cause "NAT state missing".
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 18]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-19" id="page-19" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-19" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+                                            /--\/--\
+   +--------+              +-----+         /        \         +--------+
+   | Host A | &lt;----------&gt; | NAT | &lt;----&gt; | Internet | &lt;----&gt; | Host B |
+   +--------+              +-----+         \        /         +--------+
+                                            \--/\--/
+
+     ERROR [M-Bit, NAT state missing]
+   10.0.0.1:1 &lt;---------- 100.0.0.1:2
+             Ext-VTag = 5678
+
+   On reception of the ERROR message, HOST A sends an ASCONF indicating
+   that the former information has to be deleted and the source address
+   of the actual packet added.
+
+                                          /--\/--\
+ +--------+              +-----+         /        \         +--------+
+ | Host A | &lt;----------&gt; | NAT | &lt;----&gt; | Internet | &lt;----&gt; | Host B |
+ +--------+              +-----+         \        /         +--------+
+                                          \--/\--/
+
+ ASCONF [ADD-IP,DELETE-IP,Int-VTag=1234, Ext-VTag = 5678]
+ 10.0.0.1:1 ----------&gt; 100.1.0.1:2
+           Ext-VTag = 5678
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT A  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |    5678  |    2   | 100.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+         ASCONF [ADD-IP,DELETE-IP,Int-VTag=1234, Ext-VTag = 5678]
+                        102.1.0.1:1 -----------------------&gt; 100.1.0.1:2
+                                        Ext-VTag = 5678
+
+   Host B adds the new source address and deletes all former entries.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 19]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-20" id="page-20" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-20" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+                                          /--\/--\
+ +--------+              +-----+         /        \         +--------+
+ | Host A | &lt;----------&gt; | NAT | &lt;----&gt; | Internet | &lt;----&gt; | Host B |
+ +--------+              +-----+         \        /         +--------+
+                                          \--/\--/
+
+                                              ASCONF-ACK
+                        102.1.0.1:1 &lt;----------------------- 100.1.0.1:2
+                                             Int-VTag = 1234
+
+                ASCONF-ACK
+ 10.1.0.1:1 &lt;---------- 100.1.0.1:2
+ Int-VTag = 1234                     1
+
+                DATA
+ 10.0.0.1:1 ----------&gt; 100.0.0.1:2
+          Ext-VTag = 5678
+                                                DATA
+                        102.1.0.1:1 -----------------------&gt; 100.1.0.1:2
+                                        Ext-VTag = 5678
+
+<span class="h3"><h3><a class="selflink" name="section-10.5" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-10.5">10.5</a>.  Peer-to-Peer Communication</h3></span>
+
+   If two hosts are behind NATs, they have to get knowledge of the
+   peer's public address.  This can be achieved with a so-called
+   rendezvous server.  Afterwards the destination addresses are public,
+   and the association is set up with the help of the INIT collision.
+   The NAT boxes create their entries according to their internal peer's
+   point of view.  Therefore, NAT A's Internal-VTag and Internal-Port
+   are NAT B's External-VTag and External-Port, respectively.  The
+   naming of the verification tag in the packet flow is done from the
+   sending peer's point of view.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 20]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-21" id="page-21" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-21" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+            Internal | External           External | Internal
+                     |                             |
+                     |          /--\/---\          |
+ +--------+      +-------+     /         \     +-------+      +--------+
+ | Host A |&lt;----&gt;| NAT A |&lt;--&gt;| Internet  |&lt;--&gt;| NAT B |&lt;----&gt;| Host B |
+ +--------+      +-------+     \         /     +-------+      +--------+
+                     |          \--/\---/          |
+
+
+ NAT-Tables
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT A  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+--- -------+----------+--------+-----------+
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT B  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  v-tag  |  port  |    addr   |   v-tag  |   port |   addr    |
+        +---------+--------+--- -------+----------+--------+-----------+
+
+ INIT[Initiate-Tag = 1234]
+ 10.0.0.1:1 --&gt; 100.0.0.1:2
+         Ext-VTag = 0
+
+   NAT A creates entry:
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT A  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  1234   |    1   |  10.0.0.1 |     0    |    2   | 100.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+                         INIT[Initiate-Tag = 1234]
+                101.0.0.1:1 ----------------&gt; 100.0.0.1:2
+                                 Ext-VTag = 0
+
+
+   NAT B processes INIT, but cannot find an entry.  The SCTP packet is
+   silently discarded and leaves the NAT table of NAT B unchanged.
+
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT B  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+
+   Now Host B sends INIT, which is processed by NAT B. Its parameters
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 21]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-22" id="page-22" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-22" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   are used to create an entry.
+
+            Internal | External           External | Internal
+                     |                             |
+                     |          /--\/---\          |
+ +--------+      +-------+     /         \     +-------+      +--------+
+ | Host A |&lt;----&gt;| NAT A |&lt;--&gt;| Internet  |&lt;--&gt;| NAT B |&lt;----&gt;| Host B |
+ +--------+      +-------+     \         /     +-------+      +--------+
+                     |          \--/\---/          |
+
+                                               INIT[Initiate-Tag = 5678]
+                                              101.0.0.1:1 &lt;-- 10.1.0.1:2
+                                                          Ext-VTag = 0
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT B  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  5678   |    2   |  10.1.0.1 |     0    |    1   | 101.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+                           INIT[Initiate-Tag = 5678]
+                101.0.0.1:1  &lt;--------------- 100.0.0.1:2
+                                   Ext-VTag = 0
+
+   NAT A processes INIT.  As the outgoing INIT of Host A has already
+   created an entry, the entry is found and updated:
+
+            Internal | External           External | Internal
+                     |                             |
+                     |          /--\/---\          |
+ +--------+      +-------+     /         \     +-------+      +--------+
+ | Host A |&lt;----&gt;| NAT A |&lt;--&gt;| Internet  |&lt;--&gt;| NAT B |&lt;----&gt;| Host B |
+ +--------+      +-------+     \         /     +-------+      +--------+
+                     |          \--/\---/          |
+
+                VTag != Int-VTag, but Ext-VTag == 0, find entry.
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT A  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |   1234  |   1    |  10.0.0.1 |   5678   |    2   | 100.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+  INIT[Initiate-tag = 5678]
+ 10.0.0.1:1 &lt;-- 100.0.0.1:2
+           Ext-VTag = 0
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 22]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-23" id="page-23" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-23" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   Host A send INIT-ACK, which can pass through NAT B:
+
+            Internal | External           External | Internal
+                     |                             |
+                     |          /--\/---\          |
+ +--------+      +-------+     /         \     +-------+      +--------+
+ | Host A |&lt;----&gt;| NAT A |&lt;--&gt;| Internet  |&lt;--&gt;| NAT B |&lt;----&gt;| Host B |
+ +--------+      +-------+     \         /     +-------+      +--------+
+                     |          \--/\---/          |
+
+ INIT-ACK[Initiate-Tag = 1234]
+ 10.0.0.1:1 --&gt; 100.0.0.1:2
+       Ext-VTag = 5678
+
+
+                     INIT-ACK[Initiate-Tag = 1234]
+                101.0.0.1:1 ----------------&gt; 100.0.0.1:2
+                              Ext-VTag = 5678
+
+                                              NAT B updates entry:
+
+        +---------+--------+-----------+----------+--------+-----------+
+ NAT B  |  Int    |  Int   |    Priv   |   Ext    |   Ext  |    Ext    |
+        |  VTag   |  Port  |    Addr   |   VTag   |   Port |    Addr   |
+        +---------+--------+-----------+----------+--------+-----------+
+        |  5678   |    2   |  10.1.0.1 |   1234   |   1    | 101.0.0.1 |
+        +---------+--------+-----------+----------+--------+-----------+
+
+                                           INIT-ACK[Initiate-Tag = 1234]
+                                              101.0.0.1:1 --&gt; 10.1.0.1:2
+                                                     Ext-VTag = 5678
+
+   The lookup for COOKIE-ECHO and COOKIE-ACK is successful.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 23]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-24" id="page-24" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-24" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+            Internal | External           External | Internal
+                     |                             |
+                     |          /--\/---\          |
+ +--------+      +-------+     /         \     +-------+      +--------+
+ | Host A |&lt;----&gt;| NAT A |&lt;--&gt;| Internet  |&lt;--&gt;| NAT B |&lt;----&gt;| Host B |
+ +--------+      +-------+     \         /     +-------+      +--------+
+                     |          \--/\---/          |
+
+                                                      COOKIE-ECHO
+                                              101.0.0.1:1 &lt;-- 10.1.0.1:2
+                                                      Ext-VTag = 1234
+
+                               COOKIE-ECHO
+                101.0.0.1:1 &lt;------------- 100.0.0.1:2
+                               Ext-VTag = 1234
+
+        COOKIE-ECHO
+ 10.0.0.1:1 &lt;-- 100.0.0.1:2
+        Ext-VTag = 1234
+
+        COOKIE-ACK
+ 10.0.0.1:1 --&gt; 100.0.0.1:2
+        Ext-VTag = 5678
+
+                               COOKIE-ACK
+                101.0.0.1:1 ----------------&gt; 100.0.0.1:2
+                               Ext-VTag = 5678
+
+                                                     COOKIE-ACK
+                                              101.0.0.1:1 --&gt; 10.1.0.1:2
+                                                    Ext-VTag = 5678
+
+
+<span class="h2"><h2><a class="selflink" name="section-11" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-11">11</a>.  IANA Considerations</h2></span>
+
+   TBD
+
+
+<span class="h2"><h2><a class="selflink" name="section-12" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-12">12</a>.  Security considerations</h2></span>
+
+   State maintenance within a NAT is always a subject of possible Denial
+   Of Service attacks.  This document recommends that at a minimum a NAT
+   runs a timer on any SCTP state so that old association state can be
+   cleaned up.
+
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 24]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-25" id="page-25" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-25" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+<span class="h2"><h2><a class="selflink" name="section-13" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-13">13</a>.  Acknowledgments</h2></span>
+
+   The authors wish to thank Qiaobing Xie, Henning Peters, Bryan Ford,
+   David Hayes, Alfred Hines, Dan Wing, and Jason But for their
+   invaluable comments.
+
+
+<span class="h2"><h2><a class="selflink" name="section-14" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-14">14</a>.  References</h2></span>
+
+<span class="h3"><h3><a class="selflink" name="section-14.1" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-14.1">14.1</a>.  Normative References</h3></span>
+
+   [<a name="ref-RFC0793" id="ref-RFC0793">RFC0793</a>]  Postel, J., "Transmission Control Protocol", STD 7,
+              <a href="http://tools.ietf.org/html/rfc793">RFC 793</a>, September 1981.
+
+   [<a name="ref-RFC2119" id="ref-RFC2119">RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", <a href="http://tools.ietf.org/html/bcp14">BCP 14</a>, <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>, March 1997.
+
+   [<a name="ref-RFC4960" id="ref-RFC4960">RFC4960</a>]  Stewart, R., "Stream Control Transmission Protocol",
+              <a href="http://tools.ietf.org/html/rfc4960">RFC 4960</a>, September 2007.
+
+<span class="h3"><h3><a class="selflink" name="section-14.2" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#section-14.2">14.2</a>.  Informative References</h3></span>
+
+   [<a name="ref-RFC1918" id="ref-RFC1918">RFC1918</a>]  Rekhter, Y., Moskowitz, R., Karrenberg, D., Groot, G., and
+              E. Lear, "Address Allocation for Private Internets",
+              <a href="http://tools.ietf.org/html/bcp5">BCP 5</a>, <a href="http://tools.ietf.org/html/rfc1918">RFC 1918</a>, February 1996.
+
+
+Authors' Addresses
+
+   Randall R. Stewart
+   Adara Networks
+   Chapin, SC  29036
+   USA
+
+   Phone:
+   Email: randall@lakerest.net
+
+
+   Michael Tuexen
+   Muenster Univ. of Applied Sciences
+   Stegerwaldstr. 39
+   48565 Steinfurt
+   Germany
+
+   Email: tuexen@fh-muenster.de
+
+
+
+
+
+
+<span class="grey">Stewart, et al.         Expires December 28, 2011              [Page 25]</span>
+</pre><!--NewPage--><pre class="newpage"><a name="page-26" id="page-26" href="http://tools.ietf.org/html/draft-ietf-behave-sctpnat-05#page-26" class="invisible"> </a>
+<span class="grey">Internet-Draft      SCTP Network Address Translation           June 2011</span>
+
+
+   Irene Ruengeler
+   Muenster Univ. of Applied Sciences
+   Stegerwaldstr. 39
+   48565 Steinfurt
+   Germany
+
+   Email: i.ruengeler@fh-muenster.de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stewart, et al.         Expires December 28, 2011              [Page 26]
+
+</pre><br>
+<span class="noprint"><small><small>Html markup produced by rfcmarkup 1.107, available from
+<a href="http://tools.ietf.org/tools/rfcmarkup/">http://tools.ietf.org/tools/rfcmarkup/</a>
+</small></small></span>
+
+</div></body></html>
