@@ -4,14 +4,16 @@
  */
 package sctp.jsctplib;
 
-import com.niftyengineering.util.IQueuePair;
-import com.niftyengineering.util.QueuePair;
 import com.niftyengineering.util.Util;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
 import java.net.SocketException;
-import java.util.Arrays;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,15 +26,19 @@ import java.util.logging.Logger;
 public class SCTP {
 
 	public SCTP() {
-		this(9899);
+		this.constructor();
+	}
+
+	private void constructor() {
+		this.Sockets = new LinkedList<DatagramChannel>();
 	}
 
 	public SCTP(int Port) {
-		this.Sockets = new LinkedList<DatagramSocket>();
 		this.Port = Port;
+		this.constructor();
 	}
-	private int Port;
-	private List<DatagramSocket> Sockets;
+	private int Port = 0;
+	private List<DatagramChannel> Sockets;
 	private Thread IOInputAgentThread;
 	private Thread IOOutputAgentThread;
 	private Thread MultiplexInputAgentThread;
@@ -48,9 +54,19 @@ public class SCTP {
 	public void Start() {
 		DatagramSocket sock;
 		try {
-			sock = new DatagramSocket(this.Port);
-			this.Sockets.add(sock);
+			DatagramChannel channel = DatagramChannel.open();
+			channel.socket().bind(new InetSocketAddress(9989));
+			channel.configureBlocking(false);
+			this.Sockets.add(channel);
+			channel = DatagramChannel.open();
+			if (this.Port == 0) {
+				channel.socket().bind(new InetSocketAddress(this.Port));
+				channel.configureBlocking(false);
+				this.Sockets.add(channel);
+			}
 		} catch (SocketException ex) {
+			Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
 			Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		/*
@@ -76,6 +92,7 @@ public class SCTP {
 	private class IOInputAgent implements Runnable {
 
 		private SCTP Parent;
+		Selector selector;
 
 		public IOInputAgent(SCTP parent) {
 			this.Parent = parent;
@@ -83,21 +100,31 @@ public class SCTP {
 
 		@Override
 		public void run() {
-			byte[] buffer;
+			try {
+				this.selector = Selector.open();
+				for (DatagramChannel dg : Parent.Sockets) {
+					dg.register(this.selector, SelectionKey.OP_READ);
+				}
+			} catch (IOException ex) {
+				Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
+			}
 
-			boolean end = false;
-			while (end == false) {
+
+			while (true) {
 				try {
-					for (DatagramSocket dg : Parent.Sockets) {
-						buffer = new byte[4096];
-						DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-						dg.receive(packet);
-						System.out.println("Packet Received");
+					//If there's a packet available, fetch it:
+
+					if (this.selector.selectNow() >= 1) {
+
+						ByteBuffer packet = ByteBuffer.allocate(4096);
+						for (DatagramChannel dg : Parent.Sockets) {
+							dg.receive(packet);
+							System.out.println("Packet Received");
+						}
 					}
 				} catch (IOException ex) {
 					Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
 				}
-
 			}
 		}
 	}
