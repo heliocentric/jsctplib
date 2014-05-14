@@ -9,7 +9,6 @@ package sctp.jsctplib;
  * @author helio
  */
 public interface SCTPPacket {
-	public void Unpack(byte [] packet);
 	public byte[] Pack();
 	
 	public boolean ReadOnly();

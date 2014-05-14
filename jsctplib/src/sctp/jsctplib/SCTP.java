@@ -55,7 +55,7 @@ public class SCTP {
 		this.IOInputAgentThread.start();
 		*/
 		
-		SCTPPacket packet = new SCTPPacketJIT();
+		SCTPPacket packet = new SCTPPacketFromVars();
 		packet.setSourcePort(65523);
 		packet.setDestinationPort(80);
 		packet.setVerificationTag(1231356912);
