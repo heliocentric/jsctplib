@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.github.heliocentric.jsctplib;
+package sctp.jsctplib;
 
+import com.niftyengineering.util.IQueuePair;
+import com.niftyengineering.util.QueuePair;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -34,7 +36,6 @@ public class SCTP {
 	private Thread IOOutputAgentThread;
 	private Thread MultiplexInputAgentThread;
 	private Thread MultiplexOutputAgentThread;
-	
 	public SCTPSocket socket(int domain, int type, int protocol) {
 		return new SCTPSocket(this);
 	}

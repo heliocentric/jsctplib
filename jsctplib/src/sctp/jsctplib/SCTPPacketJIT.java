@@ -1,4 +1,4 @@
-package com.github.heliocentric.jsctplib;
+package sctp.jsctplib;
 
 /*
  * To change this template, choose Tools | Templates
