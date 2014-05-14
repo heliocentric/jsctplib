@@ -4,7 +4,7 @@
  */
 package echoserver;
 
-import com.github.heliocentric.jsctplib.SCTP;
+import sctp.jsctplib.SCTP;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
