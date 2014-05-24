@@ -23,9 +23,9 @@ import java.util.logging.Logger;
  *
  * @author helio
  */
-public class SCTP {
+public class SCTPEngine {
 
-	public SCTP() {
+	public SCTPEngine() {
 		this.constructor();
 	}
 
@@ -33,7 +33,7 @@ public class SCTP {
 		this.Sockets = new LinkedList<DatagramChannel>();
 	}
 
-	public SCTP(int Port) {
+	public SCTPEngine(int Port) {
 		this.Port = Port;
 		this.constructor();
 	}
@@ -65,9 +65,9 @@ public class SCTP {
 				this.Sockets.add(channel);
 			}
 		} catch (SocketException ex) {
-			Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(SCTPEngine.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
-			Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(SCTPEngine.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		/*
 		 this.IOInputAgentThread = new Thread(new IOInputAgent(this));
@@ -91,10 +91,10 @@ public class SCTP {
 
 	private class IOInputAgent implements Runnable {
 
-		private SCTP Parent;
+		private SCTPEngine Parent;
 		Selector selector;
 
-		public IOInputAgent(SCTP parent) {
+		public IOInputAgent(SCTPEngine parent) {
 			this.Parent = parent;
 		}
 
@@ -106,7 +106,7 @@ public class SCTP {
 					dg.register(this.selector, SelectionKey.OP_READ);
 				}
 			} catch (IOException ex) {
-				Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
+				Logger.getLogger(SCTPEngine.class.getName()).log(Level.SEVERE, null, ex);
 			}
 
 
@@ -114,16 +114,16 @@ public class SCTP {
 				try {
 					//If there's a packet available, fetch it:
 
-					if (this.selector.selectNow() >= 1) {
+						if (this.selector.selectNow() >= 1) {
 
-						ByteBuffer packet = ByteBuffer.allocate(4096);
+						ByteBuffer packet = ByteBuffer.allocate(8192);
 						for (DatagramChannel dg : Parent.Sockets) {
 							dg.receive(packet);
 							System.out.println("Packet Received");
 						}
 					}
 				} catch (IOException ex) {
-					Logger.getLogger(SCTP.class.getName()).log(Level.SEVERE, null, ex);
+					Logger.getLogger(SCTPEngine.class.getName()).log(Level.SEVERE, null, ex);
 				}
 			}
 		}
@@ -131,9 +131,9 @@ public class SCTP {
 
 	private class IOOutputAgent implements Runnable {
 
-		private SCTP Parent;
+		private SCTPEngine Parent;
 
-		public IOOutputAgent(SCTP parent) {
+		public IOOutputAgent(SCTPEngine parent) {
 			this.Parent = parent;
 		}
 

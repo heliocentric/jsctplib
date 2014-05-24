@@ -10,8 +10,8 @@ package sctp.jsctplib;
  */
 public class SCTPSocket {
 
-	private SCTP master;
-	SCTPSocket(SCTP aThis) {
+	private SCTPEngine master;
+	SCTPSocket(SCTPEngine aThis) {
 		this.master = aThis;
 	}
 	public void bind() {

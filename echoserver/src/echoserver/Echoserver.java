@@ -4,7 +4,7 @@
  */
 package echoserver;
 
-import sctp.jsctplib.SCTP;
+import sctp.jsctplib.SCTPEngine;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -33,11 +33,11 @@ public class Echoserver {
 			Port = null;
 		}
 		
-		SCTP engine;
+		SCTPEngine engine;
 		if (Port == null) {
-			engine = new SCTP();
+			engine = new SCTPEngine();
 		} else {
-			engine = new SCTP(Port);
+			engine = new SCTPEngine(Port);
 		}
 		
 		engine.Start();
