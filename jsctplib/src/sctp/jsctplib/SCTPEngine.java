@@ -44,13 +44,6 @@ public class SCTPEngine {
 	private Thread MultiplexInputAgentThread;
 	private Thread MultiplexOutputAgentThread;
 
-	public SCTPSocket socket(int domain, int type, int protocol) {
-		return new SCTPSocket(this);
-	}
-
-	public void close(SCTPSocket socket) {
-	}
-
 	public void Start() {
 		DatagramSocket sock;
 		try {
@@ -69,11 +62,11 @@ public class SCTPEngine {
 		} catch (IOException ex) {
 			Logger.getLogger(SCTPEngine.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		/*
-		 this.IOInputAgentThread = new Thread(new IOInputAgent(this));
-		 this.IOInputAgentThread.start();
-		 */
 
+		this.IOInputAgentThread = new Thread(new IOInputAgent(this));
+		this.IOInputAgentThread.start();
+
+/*
 		SCTPPacket packet = new SCTPPacketFromVars();
 		packet.setSourcePort(65523);
 		packet.setDestinationPort(80);
@@ -86,7 +79,7 @@ public class SCTPEngine {
 		param.setData("Test Value123".getBytes());
 
 		Util.DisplayPacket(param.Pack());
-
+*/
 	}
 
 	private class IOInputAgent implements Runnable {
@@ -112,20 +105,23 @@ public class SCTPEngine {
 
 			while (true) {
 				try {
-					//If there's a packet available, fetch it:
-
-						if (this.selector.selectNow() >= 1) {
+					if (this.selector.selectNow() >= 1) {
 
 						ByteBuffer packet = ByteBuffer.allocate(8192);
 						for (DatagramChannel dg : Parent.Sockets) {
 							dg.receive(packet);
-							System.out.println("Packet Received");
+							this.processPacket(packet);
 						}
 					}
 				} catch (IOException ex) {
 					Logger.getLogger(SCTPEngine.class.getName()).log(Level.SEVERE, null, ex);
 				}
 			}
+		}
+
+		private void processPacket(ByteBuffer packet) {
+			Util.DisplayPacket(packet.array());
+			SCTPPacket processedpacket = new SCTPPacketFromBytes(packet.array());
 		}
 	}
 

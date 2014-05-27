@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sctp.jsctplib.SCTPPacket;
+import sctp.jsctplib.SCTPSocket;
 
 /**
  *
@@ -30,20 +32,17 @@ public class Echoserver {
 		try {
 			Port = Integer.parseInt(PortString);
 		} catch (Exception e) {
-			Port = null;
+			Port = 5555;
 		}
 		
-		SCTPEngine engine;
-		if (Port == null) {
-			engine = new SCTPEngine();
-		} else {
-			engine = new SCTPEngine(Port);
-		}
-		
-		engine.Start();
+		/*
+		 * Actual socket code.
+		 */
+		SCTPSocket socket = SCTPSocket.listen(Port);
 		boolean end = false;
 		while (end == false) {
-			
+			byte[] packet = socket.read();
+			socket.write(packet);
 		}
 	}
 }
