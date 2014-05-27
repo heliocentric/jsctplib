@@ -10,14 +10,21 @@ package sctp.jsctplib;
  */
 public class SCTPSocket {
 
-	private SCTP master;
-	SCTPSocket(SCTP aThis) {
-		this.master = aThis;
+	private SCTPEngine master;
+
+	private SCTPSocket() {
+		if (sctp.jsctplib.Singleton.getEngine() == null)
+		{
+			sctp.jsctplib.Singleton.CreateEngine();
+		}
+		this.master = sctp.jsctplib.Singleton.getEngine();
 	}
-	public void bind() {
-		
+	public void bind(int Port) {
 	}
-	public void listen() {
+	public static SCTPSocket listen(int Port) {
+		SCTPSocket socket = new SCTPSocket();
+		socket.bind(Port);
+		return socket;
 		
 	}
 	public void connect() {
@@ -50,10 +57,14 @@ public class SCTPSocket {
 	public void getsockopt() {
 		
 	}
-	public void read() {
+	public byte[] read() {
+		return null;
+	}
+	public SCTPPacket readp() {
+		return null;
 		
 	}
-	public void write() {
+	public void write(byte[] data) {
 		
 	}
 	public void getsockname() {

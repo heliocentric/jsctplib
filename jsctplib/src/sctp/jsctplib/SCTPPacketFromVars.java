@@ -20,15 +20,13 @@ package sctp.jsctplib;
  * 
  * @author helio
  */
-public class SCTPPacketJIT implements SCTPPacket {
-	public SCTPPacketJIT() {
-		this._readonly = false;
+public class SCTPPacketFromVars implements SCTPPacket {
+	public SCTPPacketFromVars() {
 	}
 	
-	private boolean _readonly;
 	@Override
 	public boolean ReadOnly() {
-		return this._readonly;
+		return false;
 	}
 	
 	
@@ -40,12 +38,6 @@ public class SCTPPacketJIT implements SCTPPacket {
 	 * 
 	 */
 	
-	private byte[] packet;
-	@Override
-	public void Unpack(byte[] packet) {
-		this._readonly = true;
-		this.packet = packet;
-	}
 
 	
 	@Override

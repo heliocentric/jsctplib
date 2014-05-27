@@ -4,11 +4,13 @@
  */
 package echoserver;
 
-import sctp.jsctplib.SCTP;
+import sctp.jsctplib.SCTPEngine;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sctp.jsctplib.SCTPPacket;
+import sctp.jsctplib.SCTPSocket;
 
 /**
  *
@@ -30,20 +32,17 @@ public class Echoserver {
 		try {
 			Port = Integer.parseInt(PortString);
 		} catch (Exception e) {
-			Port = null;
+			Port = 5555;
 		}
 		
-		SCTP engine;
-		if (Port == null) {
-			engine = new SCTP();
-		} else {
-			engine = new SCTP(Port);
-		}
-		
-		engine.Start();
+		/*
+		 * Actual socket code.
+		 */
+		SCTPSocket socket = SCTPSocket.listen(Port);
 		boolean end = false;
 		while (end == false) {
-			
+			byte[] packet = socket.read();
+			socket.write(packet);
 		}
 	}
 }
